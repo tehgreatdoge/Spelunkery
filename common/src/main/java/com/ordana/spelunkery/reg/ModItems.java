@@ -24,6 +24,8 @@ public class ModItems {
         if(Objects.equals(requiredMod, "create")) return requiredMod.equals("create");
         if(Objects.equals(requiredMod, "sullysmod")) return requiredMod.equals("sullysmod");
         if(Objects.equals(requiredMod, "oreganized")) return requiredMod.equals("oreganized");
+        if(Objects.equals(requiredMod, "etcetera")) return requiredMod.equals("etcetera");
+        if(Objects.equals(requiredMod, "create_dd")) return requiredMod.equals("create_dd");
         return PlatHelper.isModLoaded(requiredMod);
     }
 
@@ -56,17 +58,23 @@ public class ModItems {
             new Item(new Item.Properties()));
     public static final Supplier<Item> RAW_GOLD_NUGGET = regItem("raw_gold_nugget", () ->
             new Item(new Item.Properties()));
+    public static final Supplier<Item> RAW_MAGNETITE_NUGGET = regItem("raw_magnetite_nugget", () ->
+        new Item(new Item.Properties()));
     public static final Supplier<Item> RAW_ZINC_NUGGET = regItem("raw_zinc_nugget", () ->
             new Item(new Item.Properties()));
     public static final Supplier<Item> RAW_LEAD_NUGGET = regItem("raw_lead_nugget", () ->
             new Item(new Item.Properties()));
     public static final Supplier<Item> RAW_SILVER_NUGGET = regItem("raw_silver_nugget", () ->
             new Item(new Item.Properties()));
-    public static final Supplier<Item> RAW_MAGNETITE_NUGGET = regItem("raw_magnetite_nugget", () ->
-            new Item(new Item.Properties()));
+    public static final Supplier<Item> RAW_TIN_NUGGET = regItem("raw_tin_nugget", () ->
+        new Item(new Item.Properties()));
+    public static final Supplier<Item> RAW_BISMUTH_NUGGET = regItem("raw_bismuth_nugget", () ->
+        new Item(new Item.Properties()));
 
     public static final Supplier<Item> COPPER_NUGGET = regItem("copper_nugget", () ->
             new Item(new Item.Properties()));
+    public static final Supplier<Item> BISMUTH_NUGGET = regItem("bismuth_nugget", () ->
+        new Item(new Item.Properties()));
 
     public static final Supplier<Item> COAL_LUMP = regItem("coal_lump", () ->
             new FuelItem(new Item.Properties(), () -> 200));

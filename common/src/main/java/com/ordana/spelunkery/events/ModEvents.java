@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -25,6 +26,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
@@ -41,6 +43,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ModEvents {
@@ -205,7 +208,7 @@ public class ModEvents {
                         if (!player.getAbilities().instabuild) stack.shrink(1);
                     }
                     else if (state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) == 3 && polishingRecipe.isRequiresDiamondGrindstone() || (polishingRecipe.isRequiresDiamondGrindstone() && !state.is(ModBlocks.DIAMOND_GRINDSTONE.get()))) {
-                        ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.SMOKE, UniformInt.of(3, 5));
+                        ParticleUtil.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.SMOKE, UniformInt.of(3, 5), -0.05f, 0.05f, false);
                         player.swing(hand);
                         level.playSound(player, pos, SoundEvents.SHIELD_BREAK, SoundSource.BLOCKS, 0.5F, 0.0F);
                         return InteractionResult.sidedSuccess(level.isClientSide);
@@ -288,7 +291,15 @@ public class ModEvents {
     public static InteractionResult useGrindstone(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, boolean diamondGrindstone) {
         var itemStack = player.getItemInHand(hand);
 
-        if (itemStack.getItem() == Items.AIR) return InteractionResult.FAIL;
+        if (itemStack.getItem() == Items.AIR) {
+            if (level.isClientSide) {
+                return InteractionResult.SUCCESS;
+            } else {
+                player.openMenu(state.getMenuProvider(level, pos));
+                player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
+                return InteractionResult.CONSUME;
+            }
+        };
         var itemName = Utils.getID(itemStack.getItem()).getPath();
 
         //effects
@@ -298,23 +309,25 @@ public class ModEvents {
         }
         level.playSound(null, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
 
+        player.startUsingItem(hand);
+        player.releaseUsingItem();
 
         if (!level.isClientSide()) {
-
-            //handle enchants
-            if (itemStack.isEnchanted()) {
-                ExperienceOrb.award((ServerLevel)level, Vec3.atCenterOf(pos), getExperienceFromItem(itemStack));
-                var newStack = new ItemStack(itemStack.getItem());
-                newStack.setDamageValue(itemStack.getDamageValue());
-                player.setItemInHand(hand, newStack);
-                return InteractionResult.CONSUME;
-            }
-            var depleted = false;
+            var depleted = true;
             if (diamondGrindstone) {
                 depleted = state.getValue(ModBlockProperties.DEPLETION) == 3;
             }
 
-            var tablePath = Spelunkery.res("gameplay/" + (diamondGrindstone && !depleted ? "diamond_" : "") + "grindstone_polishing/" + itemName);
+            //handle enchants
+            if (itemStack.isEnchanted()) {
+                ExperienceOrb.award((ServerLevel)level, Vec3.atCenterOf(pos), getExperienceFromItem(itemStack, depleted));
+                //var newStack = new ItemStack(itemStack.getItem());
+                //newStack.setDamageValue(itemStack.getDamageValue());
+                player.setItemInHand(hand, removeEnchants(itemStack, itemStack.getDamageValue(), depleted));
+                return InteractionResult.CONSUME;
+            }
+
+            var tablePath = Spelunkery.res("gameplay/" + (diamondGrindstone && depleted ? "" : "diamond_") + "grindstone_polishing/" + itemName);
             var lootTable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(tablePath);
             LootParams.Builder builder = (new LootParams.Builder((ServerLevel) level))
                 .withParameter(LootContextParams.BLOCK_STATE, level.getBlockState(pos))
@@ -331,7 +344,7 @@ public class ModEvents {
                 if (!player.getInventory().add(stack)) {
                     player.drop(stack, false);
                 }
-                if (tablePath.getPath().contains("rough")) ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(pos), 1);
+                if (tablePath.getPath().contains("rough")) ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(pos), depleted ? 1 : 2);
             }
 
             //depletion
@@ -352,14 +365,14 @@ public class ModEvents {
     }
 
 
-    private static int getExperienceFromItem(ItemStack stack) {
+    private static int getExperienceFromItem(ItemStack stack, boolean depleted) {
         int i = 0;
         Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
 
         for (Map.Entry<Enchantment, Integer> enchantmentIntegerEntry : map.entrySet()) {
             Enchantment enchantment = enchantmentIntegerEntry.getKey();
             Integer integer = enchantmentIntegerEntry.getValue();
-            if (!enchantment.isCurse()) {
+            if (!enchantment.isCurse() || !depleted) {
                 i += enchantment.getMinCost(integer);
             }
         }
@@ -367,4 +380,27 @@ public class ModEvents {
         return i;
     }
 
+    private static ItemStack removeEnchants(ItemStack stack, int damage, boolean depleted) {
+        ItemStack itemStack = stack.copy();
+        itemStack.removeTagKey("Enchantments");
+        itemStack.removeTagKey("StoredEnchantments");
+        if (damage > 0) {
+            itemStack.setDamageValue(damage);
+        } else {
+            itemStack.removeTagKey("Damage");
+        }
+
+        itemStack.setCount(1);
+        Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack).entrySet().stream().filter((entry) -> (depleted || !entry.getKey().isCurse()) && entry.getKey().isCurse()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        EnchantmentHelper.setEnchantments(map, itemStack);
+        itemStack.setRepairCost(0);
+        if (itemStack.is(Items.ENCHANTED_BOOK) && map.size() == 0) {
+            itemStack = new ItemStack(Items.BOOK);
+            if (stack.hasCustomHoverName()) {
+                itemStack.setHoverName(stack.getHoverName());
+            }
+        }
+
+        return itemStack;
+    }
 }

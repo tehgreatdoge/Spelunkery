@@ -1,0 +1,18 @@
+{
+  "conditions": [
+    {
+      "modid": "etcetera",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "etcetera:bismuth_ingot"
+    }
+  ],
+  "result": {
+    "item": "spelunkery:bismuth_nugget",
+    "count": 9
+  }
+}

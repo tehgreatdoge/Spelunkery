@@ -283,11 +283,14 @@
   "item.spelunkery.raw_iron_nugget": "Raw Iron Nugget",
   "item.spelunkery.raw_copper_nugget": "Raw Copper Nugget",
   "item.spelunkery.raw_gold_nugget": "Raw Gold Nugget",
+  "item.spelunkery.raw_magnetite_nugget": "Raw Magnetite Nugget",
   "item.spelunkery.raw_zinc_nugget": "Raw Zinc Nugget",
   "item.spelunkery.raw_lead_nugget": "Raw Lead Nugget",
   "item.spelunkery.raw_silver_nugget": "Raw Silver Nugget",
-  "item.spelunkery.raw_magnetite_nugget": "Raw Magnetite Nugget",
+  "item.spelunkery.raw_bismuth_nugget": "Raw Bismuth Nugget",
+  "item.spelunkery.raw_tin_nugget": "Raw Tin Nugget",
 
+  "item.spelunkery.bismuth_nugget": "Bismuth Nugget",
   "item.spelunkery.copper_nugget": "Copper Nugget",
 
   "item.spelunkery.coal_lump": "Lump of Coal",

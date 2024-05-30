@@ -142,10 +142,6 @@ public class HammerAndChiselItem extends Item implements Vanishable {
 
     }
 
-    public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {
-
-    }
-
     public static void addOptional(ImmutableBiMap.Builder<Block, Block> map,
                                    String moddedId, String moddedId2) {
         var o1 = BuiltInRegistries.BLOCK.getOptional(new ResourceLocation(moddedId));

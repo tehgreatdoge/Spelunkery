@@ -28,6 +28,8 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
         this.dynamicPack.addNamespaces("sullysmod");
         this.dynamicPack.addNamespaces("oreganized");
         this.dynamicPack.addNamespaces("ditr");
+        this.dynamicPack.addNamespaces("create_dd");
+        this.dynamicPack.addNamespaces("etcetera");
     }
 
     @Override
@@ -246,6 +248,10 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
                 "tuff_zinc_ore"
         );
 
+        var etceteraLootMetalNuggets = List.of(
+            "bismuth_ore"
+        );
+
         //misc
         var vanillaLootSculk = List.of(
                 "sculk",
@@ -387,6 +393,13 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
             overrideDataFile(manager, createLootSpelunkeryMetal,
                     "spelunkery", "",
                     "overrides/loot_tables/", ResType.BLOCK_LOOT_TABLES);
+        }
+
+        if (PlatHelper.isModLoaded("etcetera") && !CommonConfigs.ENABLE_RAW_NUGGETS.get()) {
+
+            overrideDataFile(manager, etceteraLootMetalNuggets,
+                "etcetera", "blocks/",
+                "overrides/loot_tables/etcetera/", ResType.BLOCK_LOOT_TABLES);
         }
 
         if (CommonConfigs.ENABLE_RAW_NUGGETS.get()) {

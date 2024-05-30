@@ -3,6 +3,7 @@ package com.ordana.spelunkery.mixins;
 import com.ordana.spelunkery.configs.CommonConfigs;
 import com.ordana.spelunkery.events.ModEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +24,13 @@ public abstract class GrindstoneMixin extends FaceAttachedHorizontalDirectionalB
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (CommonConfigs.GRINDSTONE_REWORK.get()) return ModEvents.useGrindstone(state, level, pos, player, hand, hit, false);
-        else return super.use(state, level, pos, player, hand, hit);
+        else if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else {
+            player.openMenu(state.getMenuProvider(level, pos));
+            player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
+            return InteractionResult.CONSUME;
+        }
     }
 
 }

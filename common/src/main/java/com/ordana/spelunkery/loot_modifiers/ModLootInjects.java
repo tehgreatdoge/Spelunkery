@@ -98,7 +98,7 @@ public class ModLootInjects {
 
         ResourceLocation name = event.getTable();
         String path = name.getNamespace();
-        if (!path.equals("minecraft") && !path.equals("spelunkery")) return;
+        //if (!path.equals("minecraft") && !path.equals("spelunkery")) return;
 
 /*
         if (name.equals(new ResourceLocation("minecraft", "blocks/gravel"))) {
@@ -120,7 +120,11 @@ public class ModLootInjects {
             if (name.equals(new ResourceLocation("ditr", "blocks/obsidian_diamond_ore"))) {
                 event.addTableReference(Spelunkery.res("injects/ores/obsidian"));
             }
-
+        }
+        if (PlatHelper.isModLoaded("etcetera")) {
+            if (name.equals(new ResourceLocation("etcetera", "blocks/nether_bismuth_ore"))) {
+                event.addTableReference(Spelunkery.res("injects/ores/netherrack"));
+            }
         }
 
         for (var loot : oreNetherDrops) {
