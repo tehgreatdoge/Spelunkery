@@ -329,8 +329,8 @@
   "item.spelunkery.basalt_pebble": "玄武岩石子",
   "item.spelunkery.end_stone_pebble": "末地石石子",
 
-  "item.spelunkery.magnetite_chunk": "粗磁铁",
-  "block.spelunkery.magnetite": "粗磁铁块",
+  "item.spelunkery.raw_magnetite": "粗磁铁",
+  "block.spelunkery.raw_magnetite_block": "粗磁铁块",
   "item.spelunkery.item_magnet": "物品磁铁",
   "item.spelunkery.magnetic_compass": "地磁指北针",
   "item.spelunkery.handheld_compactor": "手持压缩机",
