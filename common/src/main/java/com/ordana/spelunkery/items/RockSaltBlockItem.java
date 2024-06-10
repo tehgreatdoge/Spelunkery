@@ -1,6 +1,7 @@
 package com.ordana.spelunkery.items;
 
 import com.ordana.spelunkery.configs.ClientConfigs;
+import com.ordana.spelunkery.configs.CommonConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -20,7 +21,7 @@ public class RockSaltBlockItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag context) {
-        if (ClientConfigs.ENABLE_TOOLTIPS.get()) {
+        if (ClientConfigs.ENABLE_TOOLTIPS.get() && !CommonConfigs.GRINDSTONE_REWORK.get()) {
             tooltip.add(Component.translatable("tooltip.spelunkery.rock_salt").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
         }
     }

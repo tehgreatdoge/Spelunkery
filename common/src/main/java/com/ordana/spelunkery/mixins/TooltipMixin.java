@@ -45,7 +45,7 @@ public class TooltipMixin {
                 if (stack.is(Items.SCULK)) tooltip.add(Component.translatable("tooltip.spelunkery.sculk").setStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_AQUA)));
                 if (stack.is(Items.SCULK_VEIN)) tooltip.add(Component.translatable("tooltip.spelunkery.sculk_veins").setStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_AQUA)));
             }
-            if (stack.is(Items.REDSTONE)) {
+            if (stack.is(Items.REDSTONE) && !CommonConfigs.GRINDSTONE_REWORK.get()) {
                 tooltip.add(Component.translatable("tooltip.spelunkery.redstone").setStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_RED)));
             }
             if (stack.is(ModTags.KEEP_ON_DEATH)) {
@@ -57,19 +57,22 @@ public class TooltipMixin {
             if (CommonConfigs.RESPAWN_ANCHOR_PORTAL_FLUID.get() && stack.is(Items.RESPAWN_ANCHOR)) {
                 tooltip.add(Component.translatable("tooltip.spelunkery.crying_obsidian").setStyle(Style.EMPTY.applyFormat(ChatFormatting.DARK_PURPLE)));
             }
-            if (stack.is(Items.GRINDSTONE) || stack.is(ModBlocks.DIAMOND_GRINDSTONE.get().asItem())) {
-                if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), Minecraft.getInstance().options.keyShift.key.getValue())) {
-                    tooltip.add(TranslationUtils.GRINDSTONE_1.component());
-                    tooltip.add(TranslationUtils.GRINDSTONE_2.component());
-                } else {
-                    tooltip.add(TranslationUtils.CROUCH.component());
+
+            if (!CommonConfigs.GRINDSTONE_REWORK.get()) {
+                if (stack.is(Items.GRINDSTONE) || stack.is(ModBlocks.DIAMOND_GRINDSTONE.get().asItem())) {
+                    if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), Minecraft.getInstance().options.keyShift.key.getValue())) {
+                        tooltip.add(TranslationUtils.GRINDSTONE_1.component());
+                        tooltip.add(TranslationUtils.GRINDSTONE_2.component());
+                    } else {
+                        tooltip.add(TranslationUtils.CROUCH.component());
+                    }
                 }
-            }
-            if (stack.is(ModTags.GRINDABLE)) {
-                tooltip.add(Component.translatable("tooltip.spelunkery.grindable").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
-            }
-            if (stack.is(ModTags.DIAMOND_GRINDABLE)) {
-                tooltip.add(Component.translatable("tooltip.spelunkery.diamond_grindable").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
+                if (stack.is(ModTags.GRINDABLE)) {
+                    tooltip.add(Component.translatable("tooltip.spelunkery.grindable").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
+                }
+                if (stack.is(ModTags.DIAMOND_GRINDABLE)) {
+                    tooltip.add(Component.translatable("tooltip.spelunkery.diamond_grindable").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
+                }
             }
         }
     }
