@@ -36,6 +36,8 @@ public class ModItems {
             new PebbleItem(new Item.Properties()));
     public static final Supplier<Item> NETHERRACK_PEBBLE = regItem("netherrack_pebble", () ->
             new PebbleItem(new Item.Properties()));
+    public static final Supplier<Item> MAGMA_PEBBLE = regItem("magma_pebble", () ->
+            new PebbleItem(new Item.Properties()));
     public static final Supplier<Item> BLACKSTONE_PEBBLE = regItem("blackstone_pebble", () ->
             new PebbleItem(new Item.Properties()));
     public static final Supplier<Item> BASALT_PEBBLE = regItem("basalt_pebble", () ->

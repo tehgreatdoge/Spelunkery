@@ -22,7 +22,6 @@
     "MossBlockMixin",
     "NetherPortalBlockMixin",
     "NetherPortalSoundMixin",
-    "NoiseChunkGeneratorMixin",
     "OreBlockMixin",
     "RedstoneOreBlockMixin",
     "ServerPlayerMixin",

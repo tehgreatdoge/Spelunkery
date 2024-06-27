@@ -26,6 +26,7 @@ public class ModTags {
     public static final TagKey<Block> XP_DROP_DISABLED = registerBlockTag("xp_drop_disabled");
     public static final TagKey<Block> SLUICES = registerBlockTag("sluices");
     public static final TagKey<Block> SPRING_GEYSER_SOURCE = registerBlockTag("spring_geyser_source");
+    public static final TagKey<Block> SPRING_GEYSER_BREAKABLE = registerBlockTag("spring_geyser_breakable");
 
     //items
     public static final TagKey<Item> KEEP_ON_DEATH = registerItemTag("keep_on_death");

@@ -1,11 +1,11 @@
 package com.ordana.spelunkery.forge;
 
 import com.ordana.spelunkery.reg.ModBlocks;
+import com.ordana.spelunkery.reg.ModFluids;
 import com.ordana.spelunkery.reg.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -37,9 +37,10 @@ public class SpringWaterBlock extends LiquidBlock {
         var aboveState = level.getBlockState(pos.above());
         var belowState = level.getBlockState(pos.below());
         var fluidState = level.getFluidState(pos);
-        if (!fluidState.getValue(FlowingFluid.FALLING) && fluidState.isSource() &&
-                (belowState.is(ModTags.SPRING_GEYSER_SOURCE) || aboveState.is(BlockTags.OVERWORLD_CARVER_REPLACEABLES)) || aboveState.is(BlockTags.SNOW)) {
+        if (fluidState.isSource() && (belowState.is(ModTags.SPRING_GEYSER_SOURCE) || (aboveState.is(ModTags.SPRING_GEYSER_BREAKABLE) && !aboveState.isAir()))) {
             level.setBlockAndUpdate(pos.above(), ModBlocks.SPRING_WATER.get().defaultBlockState());
+            level.setBlockAndUpdate(pos, ModFluids.FLOWING_SPRING_WATER.get().defaultFluidState().createLegacyBlock());
+
         }
     }
 

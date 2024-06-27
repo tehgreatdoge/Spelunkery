@@ -53,7 +53,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:clay"
+          "name": "minecraft:clay_ball"
         }
       ]
     }

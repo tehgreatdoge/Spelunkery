@@ -226,6 +226,7 @@ public class ModCreativeTabs {
             ModItems.STONE_PEBBLE,
             ModItems.DEEPSLATE_PEBBLE,
             ModItems.NETHERRACK_PEBBLE,
+            ModItems.MAGMA_PEBBLE,
             ModItems.BLACKSTONE_PEBBLE,
             ModItems.BASALT_PEBBLE,
             ModItems.END_STONE_PEBBLE

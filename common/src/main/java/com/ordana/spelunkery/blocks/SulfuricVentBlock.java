@@ -4,7 +4,6 @@ import com.ordana.spelunkery.events.ClientBoundParticlePacket;
 import com.ordana.spelunkery.events.ClientBoundSendKnockbackPacket;
 import com.ordana.spelunkery.events.NetworkHandler;
 import com.ordana.spelunkery.reg.ModBlocks;
-import com.ordana.spelunkery.reg.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

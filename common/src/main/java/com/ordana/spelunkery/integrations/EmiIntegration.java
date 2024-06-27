@@ -313,7 +313,7 @@ public class EmiIntegration implements EmiPlugin {
             .output(EmiStack.of(Items.SKELETON_SKULL).setChance(0.138f))
             .output(EmiStack.of(Items.LEATHER_BOOTS).setChance(0.277f))
             .output(EmiStack.of(Items.GLASS_BOTTLE).setChance(0.277f))
-            .output(EmiStack.of(Items.CLAY).setChance(0.027f))
+            .output(EmiStack.of(Items.CLAY_BALL).setChance(0.027f))
             .build());
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
@@ -420,17 +420,16 @@ public class EmiIntegration implements EmiPlugin {
             .id(new ResourceLocation("spelunkery", "/lava_passive"))
             .rightInput(sluice, true)
             .leftInput(lava)
-            .output(EmiStack.of(ModItems.NETHERRACK_PEBBLE.get()).setChance(200f / 572f))
-            .output(EmiStack.of(ModItems.BLACKSTONE_PEBBLE.get()).setChance(100f / 572f), s -> s.appendTooltip(
+            .output(EmiStack.of(ModItems.NETHERRACK_PEBBLE.get()).setChance(200f / 472f))
+            .output(EmiStack.of(ModItems.BLACKSTONE_PEBBLE.get()).setChance(100f / 472f), s -> s.appendTooltip(
                 Component.translatable("tooltip.spelunkery.sluice.wastes_deltas").setStyle(style)))
-            .output(EmiStack.of(Items.MAGMA_BLOCK).setChance(150f / 572f))
-            .output(EmiStack.of(Items.MAGMA_CREAM).setChance(100f / 572f))
-            .output(EmiStack.of(Items.MAGMA_CUBE_SPAWN_EGG).setChance(10f / 572f), s -> s.appendTooltip(
+            .output(EmiStack.of(ModItems.MAGMA_PEBBLE.get()).setChance(150f / 472f))
+            .output(EmiStack.of(Items.MAGMA_CUBE_SPAWN_EGG).setChance(10f / 472f), s -> s.appendTooltip(
                 Component.translatable("tooltip.spelunkery.sluice.wastes_deltas").setStyle(style)))
-            .output(EmiStack.of(Items.WITHER_SKELETON_SKULL).setChance(1f / 572f), s -> s.appendTooltip(
+            .output(EmiStack.of(Items.WITHER_SKELETON_SKULL).setChance(1f / 472f), s -> s.appendTooltip(
                 Component.translatable("tooltip.spelunkery.sluice.fortresses").setStyle(style)))
-            .output(EmiStack.of(ModItems.RAW_GOLD_NUGGET.get()).setChance(10f / 572f))
-            .output(EmiStack.of(Items.NETHERITE_SCRAP).setChance(1f / 572f), s -> s.appendTooltip(
+            .output(EmiStack.of(ModItems.RAW_GOLD_NUGGET.get()).setChance(10f / 472f))
+            .output(EmiStack.of(Items.NETHERITE_SCRAP).setChance(1f / 472f), s -> s.appendTooltip(
                 Component.translatable("tooltip.spelunkery.sluice.wastes_deltas").setStyle(style)))
             .build());
 

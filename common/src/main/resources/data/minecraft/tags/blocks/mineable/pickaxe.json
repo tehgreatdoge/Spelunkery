@@ -78,21 +78,69 @@
     "spelunkery:diorite_diamond_ore",
     "spelunkery:granite_diamond_ore",
     "spelunkery:tuff_diamond_ore",
-    "spelunkery:granite_zinc_ore",
-    "spelunkery:diorite_zinc_ore",
-    "spelunkery:andesite_zinc_ore",
-    "spelunkery:tuff_zinc_ore",
-    "spelunkery:granite_lead_ore",
-    "spelunkery:diorite_lead_ore",
-    "spelunkery:andesite_lead_ore",
-    "spelunkery:tuff_lead_ore",
-    "spelunkery:granite_silver_ore",
-    "spelunkery:diorite_silver_ore",
-    "spelunkery:andesite_silver_ore",
-    "spelunkery:tuff_silver_ore",
-    "spelunkery:granite_jade_ore",
-    "spelunkery:diorite_jade_ore",
-    "spelunkery:andesite_jade_ore",
-    "spelunkery:tuff_jade_ore"
+    {
+      "id": "spelunkery:granite_zinc_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:diorite_zinc_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:andesite_zinc_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:tuff_zinc_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:granite_lead_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:diorite_lead_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:andesite_lead_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:tuff_lead_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:granite_silver_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:diorite_silver_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:andesite_silver_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:tuff_silver_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:granite_jade_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:diorite_jade_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:andesite_jade_ore",
+      "required": false
+    },
+    {
+      "id": "spelunkery:tuff_jade_ore",
+      "required": false
+    }
   ]
 }

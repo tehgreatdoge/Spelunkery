@@ -7,12 +7,7 @@
         {
           "type": "minecraft:item",
           "weight": 150,
-          "name": "minecraft:magma_block"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 100,
-          "name": "minecraft:magma_cream"
+          "name": "spelunkery:magma_pebble"
         },
         {
           "type": "minecraft:item",
