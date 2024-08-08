@@ -82,7 +82,7 @@ public class GlowstickEntity extends ImprovedProjectileEntity {
         ParticleOptions particle = ParticleTypes.GLOW;
 
         for (int i = 0; i < 4; ++i) {
-            this.level.addParticle(particle, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+            this.level.addParticle(particle, this.getX(), this.getY() + 0.5, this.getZ(), 0.0D, 0.0D, 0.0D);
         }
     }
 

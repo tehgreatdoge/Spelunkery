@@ -4,7 +4,15 @@
     "block_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "spelunkery:mushgloom_block"
+        "Name": "spelunkery:mushgloom_block",
+        "Properties": {
+          "down": "false",
+          "east": "true",
+          "north": "true",
+          "south": "true",
+          "up": "true",
+          "west": "true"
+        }
       }
     },
     "stem_provider": {
