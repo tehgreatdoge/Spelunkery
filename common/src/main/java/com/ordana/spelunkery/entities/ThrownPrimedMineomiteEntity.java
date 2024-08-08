@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class ThrownPrimedMineomiteEntity extends ImprovedProjectileEntity {
 
@@ -29,11 +30,10 @@ public class ThrownPrimedMineomiteEntity extends ImprovedProjectileEntity {
         return ModItems.MINEOMITE.get();
     }
 
-    @Override
-    public void tick() {
-        level.addParticle(ParticleTypes.FLAME, this.position().x, this.position().y + 0.5, this.position().z, 0.0D, 0.0D, 0.0D);
-        level.addParticle(ParticleTypes.SMOKE, this.position().x, this.position().y + 0.5, this.position().z, 0.0D, 0.0D, 0.0D);
-        super.tick();
+    public void spawnTrailParticles(Vec3 currentPos, Vec3 newPos) {
+        for (int i = 0; i < 4; ++i) {
+            this.level.addParticle(random.nextBoolean() ? ParticleTypes.FLAME : ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5, this.getZ(), 0.0D, 0.0D, 0.0D);
+        }
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ThrownPrimedMineomiteEntity extends ImprovedProjectileEntity {
     @Override
     public void reachedEndOfLife() {
         this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.NEUTRAL, 1.5F, 1f);
-        if (!this.level.isClientSide && !this.isInWater()) {
+        if (!this.level.isClientSide) {
             this.createExplosion();
             this.level.broadcastEntityEvent(this, (byte) 10);
         }

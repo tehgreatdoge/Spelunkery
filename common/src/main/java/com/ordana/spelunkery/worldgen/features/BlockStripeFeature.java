@@ -2,7 +2,6 @@ package com.ordana.spelunkery.worldgen.features;
 
 import com.mojang.serialization.Codec;
 import com.ordana.spelunkery.configs.CommonConfigs;
-import com.ordana.spelunkery.reg.ModBlocks;
 import com.ordana.spelunkery.worldgen.feature_configs.BlockStripeFeatureConfig;
 import com.ordana.spelunkery.worldgen.feature_configs.util.FastNoiseLite;
 import com.ordana.spelunkery.worldgen.feature_configs.util.StoneEntry;
@@ -66,17 +65,9 @@ public class BlockStripeFeature extends Feature<BlockStripeFeatureConfig> {
         noise.SetFractalOctaves(1);
         var getX = (originPos.getX() & ~15);
         var getZ = (originPos.getZ() & ~15);
-        var minY = chunkGenerator.getMinY();
 
         for (int x = getX; x < getX + 16; x++) {
             for (int z = getZ; z < getZ + 16; z++) {
-                if (originPos.getY() == minY && CommonConfigs.PORTAL_FLUID_OCEAN.get()) {
-                    BlockPos currentPos = new BlockPos(x, minY, z);
-                    if (cachedChunk.getBlockState(currentPos).isAir()) {
-                        worldGenLevel.setBlock(currentPos, ModBlocks.PORTAL_FLUID.get().defaultBlockState(), Block.UPDATE_CLIENTS);
-                    }
-                }
-
                 var heightmap = worldGenLevel.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z);
                 for (int y = chunkGenerator.getMinY(); y < heightmap - config.surfaceOffset; y++) {
                     BlockPos currentPos = new BlockPos(x, y, z);

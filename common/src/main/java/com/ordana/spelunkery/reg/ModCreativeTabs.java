@@ -177,11 +177,16 @@ public class ModCreativeTabs {
             ModBlocks.PHOSPHOR_FUNGUS, ModBlocks.MUSHGLOOM, ModBlocks.MILLY_BUBCAP
         );
 
+        after(e, Items.MUSHROOM_STEM, CreativeModeTabs.NATURAL_BLOCKS,
+                ModConstants.MUSHROOM_BLOCKS,
+                ModBlocks.CAVE_MUSHROOM_STEM
+        );
+
         after(e, Items.RED_MUSHROOM_BLOCK, CreativeModeTabs.NATURAL_BLOCKS,
             ModConstants.MUSHROOM_BLOCKS,
             ModBlocks.PORTABELLA_BLOCK,
-            ModBlocks.CONK_FUNGUS_BLOCK, ModBlocks.INKCAP_MUSHROOM_BLOCK,
-            ModBlocks.WHITE_INKCAP_MUSHROOM_BLOCK, ModBlocks.MILLY_BUBCAP_BLOCK
+            ModBlocks.CONK_FUNGUS_BLOCK, ModBlocks.INKCAP_MUSHROOM_BLOCK, ModBlocks.WHITE_INKCAP_MUSHROOM_BLOCK,
+            ModBlocks.PHOSPHOR_FUNGUS_BLOCK, ModBlocks.MUSHGLOOM_BLOCK, ModBlocks.MILLY_BUBCAP_BLOCK
         );
 
         after(e, Items.CLAY_BALL, CreativeModeTabs.INGREDIENTS,
@@ -288,7 +293,7 @@ public class ModCreativeTabs {
 
         before(e, Items.COMPASS, CreativeModeTabs.TOOLS_AND_UTILITIES,
             ModConstants.MAGNET,
-            ModItems.ITEM_MAGNET, ModItems.HANDHELD_COMPACTOR,
+            ModItems.ITEM_MAGNET,
             ModItems.TUNING_FORK, ModItems.ECHO_FORK
         );
 

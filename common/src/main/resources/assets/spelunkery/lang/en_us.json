@@ -137,9 +137,12 @@
   "tooltip.spelunkery.nephrite_diode_1": "  Transfers Charge from Carved Nephrite it's facing to the opposite side",
   "tooltip.spelunkery.nephrite_diode_2": "  Transfers one at a time each time it receives a Redstone signal",
   "tooltip.spelunkery.nephrite_diode_3": "  Can transfer Charge vertically and be pushed by Pistons",
-  "tooltip.spelunkery.mineomite_1": "  Can be stacked up to nine in a single block",
-  "tooltip.spelunkery.mineomite_2": "  Will explode after being primed, explosion size relative to stick count",
-  "tooltip.spelunkery.mineomite_3": "  If holding Flint and Steel when thrown, explodes on contact",
+  "tooltip.spelunkery.sluice_1": "  Generates items passively when fluid runs through grates",
+  "tooltip.spelunkery.sluice_2": "  Right click side walls with axe or pickaxe if wood or stone to create grates",
+  "tooltip.spelunkery.sluice_3": "  Certain items can be washed into others by tossing into top",
+  "tooltip.spelunkery.channel_1": "  Is used to direct the flow of fluids",
+  "tooltip.spelunkery.channel_2": "  Channels will automatically connect to each other",
+  "tooltip.spelunkery.channel_3": "  Walls can be created or removed by clicking sides with axe or pickaxe",
 
   "tooltip.spelunkery.sluice.wastes_deltas": "Only within Basalt Deltas or Nether Wastes",
   "tooltip.spelunkery.sluice.nether_forests": "Only within Nether Forests",
@@ -453,6 +456,8 @@
   "block.spelunkery.white_glowstick": "White Glowstick",
   "block.spelunkery.gray_glowstick": "Gray Glowstick",
   "block.spelunkery.light_gray_glowstick": "Light Gray Glowstick",
+
+  "entity.spelunkery.dust_bunny": "Dust Bunny",
 
   "container.spelunkery.sluice": "Sluice",
 

@@ -8,17 +8,19 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "fluid": "minecraft:water",
-      "nbt": {},
-      "amount": 8100
+      "item": "minecraft:crying_obsidian"
     },
     {
-      "item": "minecraft:pointed_dripstone"
+      "item": "minecraft:glowstone_dust"
     }
   ],
   "results": [
     {
-      "item": "spelunkery:salt"
+      "item": "minecraft:obsidian"
+    },
+    {
+      "fluid": "spelunkery:portal_fluid",
+      "amount": 27000
     }
   ],
   "heatRequirement": "heated"

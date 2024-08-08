@@ -47,6 +47,10 @@ public class ModWorldgenFeatures {
         Spelunkery.res("block_stripe"), () ->
             new BlockStripeFeature(BlockStripeFeatureConfig.CODEC));
 
+    public static final Supplier<Feature<NoneFeatureConfiguration>> PORTAL_FLUID_OCEAN_FEATURE = RegHelper.registerFeature(
+         Spelunkery.res("portal_fluid_ocean"), () ->
+            new PortalFluidOceanFeature(NoneFeatureConfiguration.CODEC));
+
     public static final Supplier<Feature<NoneFeatureConfiguration>> SCULK_PATCH_FEATURE = RegHelper.registerFeature(
         Spelunkery.res("sculk_patch"), () ->
             new SculkGrowthFeature(NoneFeatureConfiguration.CODEC));
@@ -65,6 +69,9 @@ public class ModWorldgenFeatures {
 
         ResourceKey<ConfiguredWorldCarver<?>> crevice = ResourceKey.create(Registries.CONFIGURED_CARVER, Spelunkery.res("crevice"));
         SpelunkeryPlatform.addCarverToBiome(GenerationStep.Carving.AIR, ModTags.HAS_STONE_NOISE, crevice);
+
+        ResourceKey<PlacedFeature> portal_fluid_ocean = ResourceKey.create(Registries.PLACED_FEATURE, Spelunkery.res("portal_fluid_ocean"));
+        SpelunkeryPlatform.addFeatureToBiome(GenerationStep.Decoration.RAW_GENERATION, BiomeTags.IS_END, portal_fluid_ocean);
 
         //stone generation
         ResourceKey<PlacedFeature> noise_stone = ResourceKey.create(Registries.PLACED_FEATURE, Spelunkery.res("noise_stone"));
@@ -137,11 +144,11 @@ public class ModWorldgenFeatures {
         ResourceKey<PlacedFeature> large_lapis_vein = ResourceKey.create(Registries.PLACED_FEATURE, Spelunkery.res("large_lapis_vein"));
         SpelunkeryPlatform.addFeatureToBiome(GenerationStep.Decoration.RAW_GENERATION, ModTags.HAS_DESERT_NOISE, large_lapis_vein);
 
+
+        //vegetation
         ResourceKey<PlacedFeature> tangle_roots_ceiling = ResourceKey.create(Registries.PLACED_FEATURE, Spelunkery.res("tangle_roots_ceiling"));
         SpelunkeryPlatform.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, BiomeTags.IS_OVERWORLD, tangle_roots_ceiling);
 
-
-        //vegetation
         ResourceKey<PlacedFeature> conk_fungus = ResourceKey.create(Registries.PLACED_FEATURE, Spelunkery.res("conk_fungus"));
         SpelunkeryPlatform.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, BiomeTags.IS_OVERWORLD, conk_fungus);
 

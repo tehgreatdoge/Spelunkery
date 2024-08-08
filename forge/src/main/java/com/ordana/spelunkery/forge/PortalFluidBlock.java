@@ -43,7 +43,7 @@ public class PortalFluidBlock extends LiquidBlock {
     public ItemStack pickupBlock(LevelAccessor level, BlockPos pos, BlockState state) {
         Optional<? extends Registry<DimensionType>> registry = level.registryAccess().registry(Registries.DIMENSION_TYPE);
 
-        if (registry.isPresent() && level.dimensionType() == registry.get().get(BuiltinDimensionTypes.END) && level.getMinBuildHeight() == pos.getY() && !CommonConfigs.END_OCEAN_BUCKETABLE.get()) {
+        if (registry.isPresent() && level.dimensionType() == registry.get().get(BuiltinDimensionTypes.END) && level.getMinBuildHeight() + 3 >= pos.getY() && !CommonConfigs.END_OCEAN_BUCKETABLE.get()) {
             return ItemStack.EMPTY;
         }
 
@@ -61,22 +61,29 @@ public class PortalFluidBlock extends LiquidBlock {
                 || pos.equals(level.getSharedSpawnPos())) return;
         if (entity instanceof ServerPlayer player && player.isSecondaryUseActive()) return;
 
-        tickCounter++;
-
-        if (this.tickCounter < 1) {
-            entity.playSound(ModSoundEvents.PORTAL_FLUID_SUBMERGE.get(), 1.0f, 1.0f);
-        }
-        level.scheduleTick(pos, this, 120);
-        if (this.tickCounter >= 100) {
-
-
+        if (CommonConfigs.INSTANT_TELEPORTATION.get()) {
             if (entity instanceof ServerPlayer player) LevelHelper.teleportToSpawnPosition(player);
             else LevelHelper.teleportToWorldspawn(level, entity);
             entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 1.0f, 1.0f);
+        }
+        else {
+            tickCounter++;
+
+            if (this.tickCounter < 1) {
+                entity.playSound(ModSoundEvents.PORTAL_FLUID_SUBMERGE.get(), 1.0f, 1.0f);
+            }
+            level.scheduleTick(pos, this, 120);
+            if (this.tickCounter >= 100) {
 
 
-            setTickCounter(0);
+                if (entity instanceof ServerPlayer player) LevelHelper.teleportToSpawnPosition(player);
+                else LevelHelper.teleportToWorldspawn(level, entity);
+                entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 1.0f, 1.0f);
 
+
+                setTickCounter(0);
+
+            }
         }
     }
 

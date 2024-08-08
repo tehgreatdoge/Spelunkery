@@ -5,24 +5,19 @@
       "type": "forge:mod_loaded"
     }
   ],
-  "type": "create:mixing",
+  "type": "create:emptying",
   "ingredients": [
     {
-      "item": "minecraft:crying_obsidian"
-    },
-    {
-      "item": "minecraft:glowstone_dust"
+      "item": "spelunkery:portal_fluid_bottle"
     }
   ],
   "results": [
     {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:glass_bottle"
     },
     {
       "fluid": "spelunkery:portal_fluid",
-      "nbt": {},
       "amount": 27000
     }
-  ],
-  "heatRequirement": "heated"
+  ]
 }
