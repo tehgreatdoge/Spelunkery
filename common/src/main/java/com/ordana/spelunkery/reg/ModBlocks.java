@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.Objects;
@@ -333,9 +334,12 @@ public class ModBlocks {
 
     //plants
     public static final Supplier<Block> TANGLE_ROOTS = regWithItem("tangle_roots", () ->
-        new TangleRootsBlock(BlockBehaviour.Properties.copy(Blocks.WEEPING_VINES).mapColor(MapColor.COLOR_BROWN).randomTicks().noCollission().instabreak().sound(SoundType.WEEPING_VINES)));
+        new TangleRootsHeadBlock(BlockBehaviour.Properties.copy(Blocks.WEEPING_VINES).mapColor(MapColor.COLOR_BROWN).randomTicks().noCollission().instabreak().sound(SoundType.WEEPING_VINES)));
     public static final Supplier<Block> TANGLE_ROOTS_PLANT = regBlock("tangle_roots_plant", () ->
-        new TangleRootsPlantBlock(BlockBehaviour.Properties.copy(Blocks.WEEPING_VINES_PLANT).mapColor(MapColor.COLOR_BROWN).randomTicks().noCollission().instabreak().sound(SoundType.WEEPING_VINES)));
+        new TangleRootsBodyBlock(BlockBehaviour.Properties.copy(Blocks.WEEPING_VINES_PLANT).mapColor(MapColor.COLOR_BROWN).randomTicks().noCollission().instabreak().sound(SoundType.WEEPING_VINES)));
+    public static final Supplier<Block> TANGLE_ROOTS_BLOCK = regWithItem("tangle_roots_block", () ->
+        new TangleRootsBlockBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(25F).randomTicks().sound(SoundType.MANGROVE_ROOTS).ignitedByLava()));
+
     public static final Supplier<Block> SPOROPHYTE = regWithItem("sporophyte", () ->
         new SporophyteBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().instabreak().sound(SoundType.MOSS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final Supplier<Block> TALL_SPOROPHYTE = regWithItem("tall_sporophyte", () ->

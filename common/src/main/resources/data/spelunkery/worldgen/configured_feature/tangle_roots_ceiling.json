@@ -22,10 +22,21 @@
     },
     "replaceable": "#minecraft:base_stone_overworld",
     "ground_state": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:dirt"
-      }
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:stone"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "spelunkery:tangle_roots_block"
+          }
+        }
+      ]
     },
     "vegetation_feature": {
       "feature": "spelunkery:tangle_roots",

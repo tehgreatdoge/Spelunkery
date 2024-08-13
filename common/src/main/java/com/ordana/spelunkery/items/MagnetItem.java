@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -81,7 +82,6 @@ public class MagnetItem extends Item {
         if(entity.isSpectator()) {
             return;
         }
-
 
         CompoundTag tag = stack.getOrCreateTag();
         if (tag.contains("active") && tag.getBoolean("active")) {

@@ -36,7 +36,7 @@ public class WallMushroomFeatureConfig implements FeatureConfiguration {
             FloorAndSidesMushroomBlock block1 = (FloorAndSidesMushroomBlock)block;
             var10000 = DataResult.success(block1);
         } else {
-            var10000 = DataResult.error(() -> "Growth block should be a multiface block");
+            var10000 = DataResult.error(() -> "Growth block must be an appropriate mushroom");
         }
 
         return var10000;

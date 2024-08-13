@@ -152,7 +152,7 @@ public class ModCreativeTabs {
         );
 
         after(e, Items.VINE, CreativeModeTabs.NATURAL_BLOCKS,
-            ModBlocks.TANGLE_ROOTS, ModBlocks.SPOROPHYTE, ModBlocks.TALL_SPOROPHYTE
+            ModBlocks.TANGLE_ROOTS_BLOCK, ModBlocks.TANGLE_ROOTS, ModBlocks.SPOROPHYTE, ModBlocks.TALL_SPOROPHYTE
         );
 
         after(e, Items.RED_MUSHROOM, CreativeModeTabs.NATURAL_BLOCKS,

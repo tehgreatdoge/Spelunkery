@@ -47,6 +47,9 @@ public class DustBunnyEntity extends PathfinderMob {
     }
 
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (this.hasCustomName()) {
+            return InteractionResult.PASS;
+        }
         ItemStack itemStack = player.getItemInHand(hand);
         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.PLAYER_INTERACTED_WITH_ENTITY.trigger(serverPlayer, itemStack, this);
         player.playSound(SoundEvents.WOOL_BREAK, 1.0F, 1.0F);

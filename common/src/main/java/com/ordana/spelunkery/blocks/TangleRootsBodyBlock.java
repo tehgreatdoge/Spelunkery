@@ -23,12 +23,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TangleRootsPlantBlock extends GrowingPlantBodyBlock implements SimpleWaterloggedBlock {
+public class TangleRootsBodyBlock extends GrowingPlantBodyBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty TOP;
     public static final BooleanProperty WATERLOGGED;
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 
-    public TangleRootsPlantBlock(Properties properties) {
+    public TangleRootsBodyBlock(Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
         this.registerDefaultState(this.stateDefinition.any().setValue(TOP, true).setValue(WATERLOGGED, false));
     }

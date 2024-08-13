@@ -49,8 +49,11 @@ public class ModSetup {
     }
 
     private static void registerFabricFlammable() {
-        RegHelper.registerBlockFlammability(ModBlocks.WOODEN_CHANNEL.get(), 5, 20);
-        RegHelper.registerBlockFlammability(ModBlocks.WOODEN_SLUICE.get(), 5, 20);
+        RegHelper.registerBlockFlammability(ModBlocks.WOODEN_CHANNEL.get(), 60, 5);
+        RegHelper.registerBlockFlammability(ModBlocks.WOODEN_SLUICE.get(), 60, 5);
+        RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS_PLANT.get(), 100, 80);
+        RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS.get(), 100, 80);
+        RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS_BLOCK.get(), 500, 80);
     }
 
 
