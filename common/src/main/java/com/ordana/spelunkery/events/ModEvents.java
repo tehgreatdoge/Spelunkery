@@ -3,7 +3,7 @@ package com.ordana.spelunkery.events;
 import com.ordana.spelunkery.Spelunkery;
 import com.ordana.spelunkery.blocks.PortalFluidCauldronBlock;
 import com.ordana.spelunkery.configs.CommonConfigs;
-import com.ordana.spelunkery.items.PortalFluidBottleitem;
+import com.ordana.spelunkery.items.PortalFluidBottleItem;
 import com.ordana.spelunkery.recipes.GrindstonePolishingRecipe;
 import com.ordana.spelunkery.reg.*;
 import net.mehvahdjukaar.moonlight.api.client.util.ParticleUtil;
@@ -161,7 +161,7 @@ public class ModEvents {
                 if (player instanceof ServerPlayer serverPlayer) {
 
                     ItemStack itemStack2 = new ItemStack(ModItems.PORTAL_FLUID_BOTTLE.get());
-                    PortalFluidBottleitem.addLocationTags(level.dimension(), pos, itemStack2.getOrCreateTag());
+                    PortalFluidBottleItem.addLocationTags(level.dimension(), pos, itemStack2.getOrCreateTag());
 
                     if (!player.getInventory().add(itemStack2)) {
                         player.drop(itemStack2, false);

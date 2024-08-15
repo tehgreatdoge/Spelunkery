@@ -1,43 +1,41 @@
 package com.ordana.spelunkery.items;
 
-import dev.architectury.injectables.annotations.PlatformOnly;
+import com.ordana.spelunkery.reg.ModBlocks;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
-public class BunnyEarsItem extends ArmorItem {
+public class BunnyEarsItem extends BlockItem implements Equipable {
 
-    public BunnyEarsItem(ArmorMaterial material, Type type, Properties properties) {
-        super(material, type, properties);
+    public BunnyEarsItem(Properties properties) {
+        super(ModBlocks.BUNNY_EARS.get(), properties);
     }
 
-    @PlatformOnly(PlatformOnly.FORGE)
-    //@Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        if (level.isClientSide()) {
-            renderEars(stack, level, player, level);
-        }
-    }
-
-    @PlatformOnly(PlatformOnly.FABRIC)
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        if (level.isClientSide && entity instanceof LivingEntity livingEntity) {
-            if (livingEntity.getItemBySlot(EquipmentSlot.HEAD) == stack) {
-                renderEars(stack, level, entity, level);
+    public EquipmentSlot getEquipmentSlot() {
+        return EquipmentSlot.HEAD;
+    }
+
+    public InteractionResult useOn(UseOnContext context) {
+        return InteractionResult.PASS;
+    }
+
+
+    @Override
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, Entity entity, int slotId, boolean isSelected) {
+        if (entity instanceof LivingEntity lEntity) {
+            if (lEntity.getItemBySlot(EquipmentSlot.HEAD).getItem() == this) {
+                lEntity.addEffect(new MobEffectInstance(MobEffects.JUMP, 2, 1, true, false, true));
             }
         }
-        super.inventoryTick(stack, level, entity, slot, selected);
-    }
-
-    private static void renderEars(ItemStack stack, Level level, Entity entity, Level serverLevel) {
-
-        //render ears,,, somehow??
-
     }
 }

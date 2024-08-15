@@ -28,7 +28,7 @@ public abstract class ItemFrameMixin extends HangingEntity {
 
     @Override
     public void tick() {
-        if (!this.level.isClientSide) {
+        //if (!this.level.isClientSide) {
 
             ItemStack stack = this.getItem();
             CompoundTag tag = stack.getTag();
@@ -39,18 +39,25 @@ public abstract class ItemFrameMixin extends HangingEntity {
 
 
                 List<ItemEntity> items = level.getEntities(EntityType.ITEM, area,
-                        item -> item.isAlive() && (!level.isClientSide || item.tickCount > 1) &&
+                        item -> item.isAlive() && (/*!level.isClientSide || */item.tickCount > 1) &&
                                 (item.getOwner() == null || !item.hasPickUpDelay()) &&
                                 !item.getItem().isEmpty() /*&& !item.getPersistentData().contains("PreventRemoteMovement") && this.canPickupStack(tag, item.getItem())*/
                 );
 
-                items.forEach(item -> item.setDeltaMovement(item.getDeltaMovement().add(
-                        new Vec3((this.position().x) - item.getX(), (this.position().y) - item.getY(), (this.position().z) - item.getZ()).normalize().scale(((1.4D - Math.sqrt(
-                                new Vec3((this.position().x) - item.getX(), (this.position().y) - item.getY(), (this.position().z) - item.getZ()).lengthSqr()) / 8.0D) * (1.4D - Math.sqrt(
-                                new Vec3((this.position().x) - item.getX(), (this.position().y) - item.getY(), (this.position().z) - item.getZ()).lengthSqr()) / 8.0D)) * 0.1D))));
+
+
+                items.forEach(item -> {
+
+                    Vec3 vec3 = new Vec3(this.getX() - item.getX(), this.getY() - item.getY(), this.getZ() - item.getZ());
+                    double d = vec3.lengthSqr();
+                    if (d < 64.0) {
+                        double e = 1.0 - Math.sqrt(d) / 8.0;
+                        item.setDeltaMovement(item.getDeltaMovement().add(vec3.normalize().scale(e * e * 0.1)));
+                    }
+                });
             }
 
-        }
+        //}
         super.tick();
     }
 }

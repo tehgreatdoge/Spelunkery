@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -94,10 +93,14 @@ public class MagnetItem extends Item {
                             !item.getItem().isEmpty() /*&& !item.getPersistentData().contains("PreventRemoteMovement") && this.canPickupStack(tag, item.getItem())*/
             );
 
-            items.forEach(item -> item.setDeltaMovement(item.getDeltaMovement().add(
-                    new Vec3((entity.position().x) - item.getX(), (entity.position().y) - item.getY(), (entity.position().z) - item.getZ()).normalize().scale(((1.4D - Math.sqrt(
-                            new Vec3((entity.position().x) - item.getX(), (entity.position().y) - item.getY(), (entity.position().z) - item.getZ()).lengthSqr()) / 8.0D) * (1.4D - Math.sqrt(
-                            new Vec3((entity.position().x) - item.getX(), (entity.position().y) - item.getY(), (entity.position().z) - item.getZ()).lengthSqr()) / 8.0D)) * 0.1D))));
+            items.forEach(item -> {
+                Vec3 vec3 = new Vec3(entity.getX() - item.getX(), entity.getY() - item.getY(), entity.getZ() - item.getZ());
+                double d = vec3.lengthSqr();
+                if (d < 64.0) {
+                    double e = 1.0 - Math.sqrt(d) / 8.0;
+                    item.setDeltaMovement(item.getDeltaMovement().add(vec3.normalize().scale(e * e * 0.1)));
+                }
+            });
         }
     }
 

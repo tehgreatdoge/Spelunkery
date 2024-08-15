@@ -53,10 +53,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class PortalFluidBottleitem extends HoneyBottleItem {
+public class PortalFluidBottleItem extends HoneyBottleItem {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public PortalFluidBottleitem(Properties properties) {
+    public PortalFluidBottleItem(Properties properties) {
         super(properties);
     }
 
@@ -195,7 +195,7 @@ public class PortalFluidBottleitem extends HoneyBottleItem {
             CompoundTag compoundTag = stack.getOrCreateTag();
             boolean bl = compoundTag.contains("anchorPos");
             boolean bl2 = compoundTag.contains("anchorDimension");
-            PortalFluidBottleitem.getDimension(compoundTag);
+            PortalFluidBottleItem.getDimension(compoundTag);
 
             if (bl && bl2) {
                 LevelHelper.teleportToAnchorPosition(serverPlayer, getAnchorPos(compoundTag));

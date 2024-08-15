@@ -158,6 +158,8 @@ public class ModItems {
 
     public static final Supplier<Item> DUST_BUN = regItem("dust_bun", () ->
             new DustBunItem(new Item.Properties().stacksTo(16)));
+    public static final Supplier<Item> BUNNY_EARS = regItem("bunny_ears", () ->
+            new BunnyEarsItem(new Item.Properties().stacksTo(1)));
 
     //mining gear
     public static final Supplier<Item> ROPE_LADDER = regItem("rope_ladder", () ->
@@ -179,7 +181,7 @@ public class ModItems {
     public static final Supplier<Item> HANDHELD_COMPACTOR = regItem("handheld_compactor", () ->
             new HandheldCompactorItem(new Item.Properties().stacksTo(1)));
     public static final Supplier<Item> PORTAL_FLUID_BOTTLE = regItem("portal_fluid_bottle", () ->
-            new PortalFluidBottleitem(new Item.Properties().food(PortalFluidBottleitem.PORTAL_FLUID).stacksTo(16).rarity(Rarity.UNCOMMON)));
+            new PortalFluidBottleItem(new Item.Properties().food(PortalFluidBottleItem.PORTAL_FLUID).stacksTo(16).rarity(Rarity.UNCOMMON)));
 
     public static final Supplier<Item> PORTAL_FLUID_BUCKET = regItem("portal_fluid_bucket", () ->
             new PortalFluidBucketItem(ModFluids.PORTAL_FLUID.get(), (new Item.Properties().stacksTo(1))));

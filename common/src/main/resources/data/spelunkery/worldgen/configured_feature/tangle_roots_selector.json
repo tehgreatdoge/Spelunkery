@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": {
+          "feature": "spelunkery:tangle_roots",
+          "placement": []
+        }
+      }
+    ],
+    "default": {
+      "feature": "spelunkery:tangle_roots_block",
+      "placement": []
+    }
+  }
+}

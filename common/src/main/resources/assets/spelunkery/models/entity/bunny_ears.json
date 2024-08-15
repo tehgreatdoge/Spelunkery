@@ -84,5 +84,10 @@
 			}
 		}
 	],
-	"display": {}
+	"display": {
+		"head": {
+			"translation": [0, 19.25, 0],
+			"scale": [1.6, 1.6, 1.6]
+		}
+	}
 }

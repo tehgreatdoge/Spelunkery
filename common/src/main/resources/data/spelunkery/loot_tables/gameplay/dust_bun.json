@@ -43,6 +43,11 @@
           "type": "minecraft:item",
           "weight": 1,
           "name": "minecraft:golden_carrot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "spelunkery:bunny_ears"
         }
       ]
     }
