@@ -252,10 +252,6 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
             "bismuth_ore"
         );
 
-        var createDDLootMetalNuggets = List.of(
-                "deepslate_tin_ore"
-        );
-
         //misc
         var vanillaLootSculk = List.of(
                 "sculk",
@@ -429,13 +425,6 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
                 overrideDataFile(manager, oreganizedLootMetal,
                         "oreganized", "",
                         "overrides/loot_tables/oreganized/", ResType.BLOCK_LOOT_TABLES);
-            }
-            if (PlatHelper.isModLoaded("create_dd")) {
-
-                //override create_dd loot tables to make deepslate metal ores drop raw nuggets
-                overrideDataFile(manager, createDDLootMetalNuggets,
-                        "create_dd", "",
-                        "overrides/loot_tables/create_dd/", ResType.BLOCK_LOOT_TABLES);
             }
 
             if (PlatHelper.isModLoaded("create")) {
