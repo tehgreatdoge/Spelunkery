@@ -25,11 +25,10 @@ dependencies {
 
     modLocalRuntime "dev.emi:emi-fabric:${rootProject.emi_version}"
 
-    modImplementation("curse.maven:selene-499980:4654718")
+    modImplementation("curse.maven:selene-499980:5619072")
 
     modImplementation("maven.modrinth:modmenu:7.2.1")
 
-    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixin_extras_version}")))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
