@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spelunkery:block/rope_ladder"
+    "layer0": "spelunkery:item/rope_ladder"
   }
 }
