@@ -257,10 +257,11 @@ public class ModEvents {
                             level.addFreshEntity(new ExperienceOrb(level, pos.getX(), pos.getY() + 1, pos.getZ(), xpAmount));
                         }
                     }
-                    if (!resultItem.is(Items.AIR)) ParticleUtils.spawnParticlesOnBlockFaces(level, pos, new ItemParticleOption(ParticleTypes.ITEM, resultItem), UniformInt.of(3, 5));
-                    else ParticleUtils.spawnParticlesOnBlockFaces(level, pos, new ItemParticleOption(ParticleTypes.ITEM, byproductItem), UniformInt.of(3, 5));
-                    player.swing(hand);
-                    level.playSound(player, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
+                    if (level.isClientSide()) {
+                        ParticleUtil.spawnParticlesOnBlockFaces(level, pos, new ItemParticleOption(ParticleTypes.ITEM, resultItem.is(Items.AIR) ? byproductItem : resultItem), UniformInt.of(3, 5), 0.01f, 0.01f, false);
+                        player.swing(hand);
+                        level.playSound(player, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
+                    }
                     var chance = random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
                     if (chance > 0) {
                         if (chance == 1 && polishingRecipe.isRequiresDiamondGrindstone() && state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) < 3) level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
