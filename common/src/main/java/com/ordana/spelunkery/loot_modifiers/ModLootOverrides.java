@@ -262,11 +262,6 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
                 "piglin_bartering"
         );
 
-        var vanillaWorldgenSculk = List.of(
-                "sculk_patch_ancient_city",
-                "sculk_patch_deep_dark"
-        );
-
 
         var vanillaWorldgenStones = List.of(
                 "ore_andesite_upper",
@@ -484,14 +479,6 @@ public class ModLootOverrides extends DynServerResourcesGenerator {
 
 
         //worldgen
-        if (CommonConfigs.BETTER_SCULK_PATCHES.get()) {
-
-            //use improved sculk patch feature
-            overrideDataFileGeneric(manager, vanillaWorldgenSculk,
-                    "minecraft", "worldgen/placed_feature/",
-                    "overrides/worldgen/placed_feature/", ResType.GENERIC);
-        }
-
         if (CommonConfigs.STONE_STRIPE_FEATURES.get()) {
 
             //disable vanilla stone patches

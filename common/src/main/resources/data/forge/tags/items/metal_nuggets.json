@@ -1,0 +1,12 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:iron_nugget",
+        "minecraft:gold_nugget",
+        "spelunkery:copper_nugget",
+        "spelunkery:raw_iron_nugget",
+        "spelunkery:raw_gold_nugget",
+        "spelunkery:raw_copper_nugget",
+        "spelunkery:raw_magnetite_nugget"
+    ]
+}

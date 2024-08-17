@@ -3,11 +3,8 @@ package com.ordana.spelunkery.items;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
-import com.ordana.spelunkery.blocks.PortalFluidCauldronBlock;
 import com.ordana.spelunkery.configs.ClientConfigs;
 import com.ordana.spelunkery.configs.CommonConfigs;
-import com.ordana.spelunkery.reg.ModBlocks;
-import com.ordana.spelunkery.reg.ModSoundEvents;
 import com.ordana.spelunkery.utils.LevelHelper;
 import com.ordana.spelunkery.utils.TranslationUtils;
 import dev.architectury.injectables.annotations.PlatformOnly;
@@ -40,10 +37,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CauldronBlock;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.portal.PortalShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -127,23 +120,9 @@ public class PortalFluidBottleItem extends HoneyBottleItem {
     public InteractionResult useOn(@NotNull UseOnContext context) {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        BlockState state = level.getBlockState(pos);
         Player player = context.getPlayer();
         ItemStack stack = context.getItemInHand();
-        if (state.getBlock() instanceof CauldronBlock || (state.getBlock() instanceof PortalFluidCauldronBlock && state.getValue(LayeredCauldronBlock.LEVEL) < 3)) {
-            level.playSound(player, pos, ModSoundEvents.PORTAL_FLUID_BOTTLE_EMPTY.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
-            if (player instanceof ServerPlayer serverPlayer) {
-                ItemStack itemStack2 = ItemUtils.createFilledResult(stack, player, Items.GLASS_BOTTLE.getDefaultInstance());
-                player.setItemInHand(context.getHand(), itemStack2);
-                if (state.is(Blocks.CAULDRON)) level.setBlockAndUpdate(pos, ModBlocks.PORTAL_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 1));
-                else level.setBlockAndUpdate(pos, ModBlocks.PORTAL_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, state.getValue(LayeredCauldronBlock.LEVEL) + 1));
-
-                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
-            }
-            return InteractionResult.sidedSuccess(level.isClientSide);
-
-        }
-        else if (inPortalDimension(level)) {
+        if (inPortalDimension(level)) {
                 Optional<PortalShape> optional = PortalShape.findEmptyPortalShape(level, pos.relative(context.getClickedFace()), Direction.Axis.X);
                 if (optional.isPresent()) {
                     optional.get().createPortalBlocks();

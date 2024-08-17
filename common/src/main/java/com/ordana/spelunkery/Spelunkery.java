@@ -45,13 +45,12 @@ public class Spelunkery {
         NetworkHandler.registerMessages();
         CommonConfigs.init();
 
+        PlatHelper.addCommonSetup(Spelunkery::setup);
+
         if(PlatHelper.getPhysicalSide().isClient()){
             ClientConfigs.init();
 
-            ClientHelper.registerOptionalTexturePack(Spelunkery.res("better_vanilla_gems"), Component.literal("Better Vanilla Gems"), true);
-            ClientHelper.registerOptionalTexturePack(Spelunkery.res("unlit_redstone_ores"), Component.literal("Unlit Redstone Ores"), true);
-            ClientHelper.registerOptionalTexturePack(Spelunkery.res("emissive_ores"), Component.literal("Emissive Ores"), false);
-            ClientHelper.registerOptionalTexturePack(Spelunkery.res("emissive_better_vanilla_ores"), Component.literal("Emissive Better Vanilla Ores"), false);
+            ClientHelper.registerOptionalTexturePack(Spelunkery.res("better_vanilla_gems"), Component.literal("Better Vanilla Gems"), false);
 
         }
 
@@ -67,10 +66,15 @@ public class Spelunkery {
         ModRecipes.init();
         ModSoundEvents.init();
         ModCreativeTabs.init();
+        ModCompostable.register();
 
         MoonlightEventsHelper.addListener(Spelunkery::compassLogic, IDropItemOnDeathEvent.class);
 
         RegHelper.addLootTableInjects(ModLootInjects::onLootInject);
+    }
+
+    public static void setup() {
+        ModCompostable.register();
     }
 
     private static void compassLogic(IDropItemOnDeathEvent event) {

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:baked_potato"
+    },
+    [
+      {
+        "tag": "forge:cooked_beef"
+      },
+      {
+        "item": "spelunkery:grilled_portabella"
+      }
+    ],
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:stuffed_potato"
+  }
+}

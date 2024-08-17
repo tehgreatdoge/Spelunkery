@@ -138,6 +138,23 @@ public class ModEvents {
     private static InteractionResult obsidianDraining(Item item, ItemStack stack, BlockPos pos, BlockState state,
                                                       Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
 
+
+        if (item == ModItems.PORTAL_FLUID_BOTTLE.get()) {
+            if (state.is(Blocks.CAULDRON) || (state.getBlock() instanceof PortalFluidCauldronBlock && state.getValue(LayeredCauldronBlock.LEVEL) < 3)) {
+                level.playSound(player, pos, ModSoundEvents.PORTAL_FLUID_BOTTLE_EMPTY.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    ItemStack itemStack2 = ItemUtils.createFilledResult(stack, player, Items.GLASS_BOTTLE.getDefaultInstance());
+                    player.setItemInHand(hand, itemStack2);
+                    if (state.is(Blocks.CAULDRON)) level.setBlockAndUpdate(pos, ModBlocks.PORTAL_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 1));
+                    else level.setBlockAndUpdate(pos, ModBlocks.PORTAL_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, state.getValue(LayeredCauldronBlock.LEVEL) + 1));
+
+                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
+                }
+                return InteractionResult.sidedSuccess(level.isClientSide);
+
+            }
+            return InteractionResult.PASS;
+        }
         if (item == Items.GLASS_BOTTLE) {
             if (state.getBlock() instanceof CryingObsidianBlock && CommonConfigs.CRYING_OBSIDIAN_PORTAL_FLUID.get()) {
                 level.playSound(player, pos, ModSoundEvents.PORTAL_FLUID_BOTTLE_FILL.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
@@ -152,8 +169,6 @@ public class ModEvents {
                 return InteractionResult.sidedSuccess(level.isClientSide);
 
             }
-
-
 
             if (state.getBlock() instanceof RespawnAnchorBlock && state.getValue(RespawnAnchorBlock.CHARGE) > 0 && CommonConfigs.RESPAWN_ANCHOR_PORTAL_FLUID.get()) {
                 level.playSound(player, pos, ModSoundEvents.PORTAL_FLUID_BOTTLE_FILL.get(),SoundSource.BLOCKS, 1.0f, 1.0f);

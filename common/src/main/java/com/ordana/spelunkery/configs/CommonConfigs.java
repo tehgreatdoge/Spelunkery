@@ -53,7 +53,6 @@ public class CommonConfigs {
 
     public static Supplier<Boolean> STONE_STRIPE_FEATURES;
     public static Supplier<Boolean> ENABLE_SPOROPHYTES;
-    public static Supplier<Boolean> BETTER_SCULK_PATCHES;
     public static Supplier<Boolean> DARK_FOREST_PORTABELLAS;
     public static Supplier<Boolean> ENABLE_MORES;
     public static Supplier<Boolean> PORTAL_FLUID_OCEAN;
@@ -122,7 +121,6 @@ public class CommonConfigs {
         STONE_STRIPE_FEATURES = builder.define("stone_stripe_features", true);
         ENABLE_SPOROPHYTES = builder.define("sporophytes_in_lush_caves", true);
         DARK_FOREST_PORTABELLAS = builder.define("dark_forest_portabellas", true);
-        BETTER_SCULK_PATCHES = builder.define("wip_sculk_patches", false);
         builder.pop();
 
         SERVER_SPEC = builder.buildAndRegister();

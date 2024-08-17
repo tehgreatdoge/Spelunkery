@@ -1,11 +1,6 @@
 package com.ordana.spelunkery.items;
 
 import com.ordana.spelunkery.reg.ModBlocks;
-import net.minecraft.ChatFormatting;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;

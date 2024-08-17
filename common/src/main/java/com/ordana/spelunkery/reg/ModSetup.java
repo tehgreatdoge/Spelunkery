@@ -2,11 +2,7 @@ package com.ordana.spelunkery.reg;
 
 import com.google.common.base.Stopwatch;
 import com.ordana.spelunkery.Spelunkery;
-import com.ordana.spelunkery.blocks.dispenser_interactions.MineomiteBehavior;
-import com.ordana.spelunkery.blocks.dispenser_interactions.PebbleBehavior;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.mehvahdjukaar.moonlight.api.util.DispenserHelper;
-import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,14 +52,6 @@ public class ModSetup {
         RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS_BLOCK.get(), 500, 80);
     }
 
-
     private static void registerDispenserBehvaiors() {
-        DispenserHelper.registerCustomBehavior(new MineomiteBehavior(ModItems.MINEOMITE.get()));
-        BuiltInRegistries.ITEM.getTagOrEmpty(ModTags.PEBBLES).iterator().forEachRemaining(h ->
-                DispenserHelper.registerCustomBehavior(new PebbleBehavior(h.value()))
-        );
-        BuiltInRegistries.ITEM.getTagOrEmpty(ModTags.GLOWSTICKS).iterator().forEachRemaining(h ->
-                DispenserHelper.registerCustomBehavior(new PebbleBehavior(h.value()))
-        );
     }
 }

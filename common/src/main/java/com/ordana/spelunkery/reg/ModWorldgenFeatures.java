@@ -51,10 +51,6 @@ public class ModWorldgenFeatures {
          Spelunkery.res("portal_fluid_ocean"), () ->
             new PortalFluidOceanFeature(NoneFeatureConfiguration.CODEC));
 
-    public static final Supplier<Feature<NoneFeatureConfiguration>> SCULK_PATCH_FEATURE = RegHelper.registerFeature(
-        Spelunkery.res("sculk_patch"), () ->
-            new SculkGrowthFeature(NoneFeatureConfiguration.CODEC));
-
     public static void init() {
 
         //carver generation
