@@ -64,6 +64,7 @@ public class ModTags {
 
     //fluids
     public static final TagKey<Fluid> PORTAL_FLUID = registerFluidTag("portal_fluid");
+    public static final TagKey<Fluid> SPRING_WATER = registerFluidTag("spring_water");
 
     //enchants
     public static final TagKey<Enchantment> STANDARD = registerEnchantTag("standard");
