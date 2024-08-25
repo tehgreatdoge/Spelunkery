@@ -11,28 +11,15 @@
       ]
     },
     {
-      "rolls": 3,
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
       "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "minecraft:redstone"
-        }
-      ]
-    },
-    {
-      "rolls": 2,
-      "bonus_rolls": 0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:redstone"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.5
         }
       ]
     }

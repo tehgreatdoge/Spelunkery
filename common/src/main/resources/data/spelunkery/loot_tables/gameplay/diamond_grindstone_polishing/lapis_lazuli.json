@@ -1,28 +1,15 @@
 {
   "pools": [
     {
-      "rolls": 2,
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
       "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "minecraft:blue_dye"
-        }
-      ]
-    },
-    {
-      "rolls": 3,
-      "bonus_rolls": 0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:blue_dye"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.5
         }
       ]
     }

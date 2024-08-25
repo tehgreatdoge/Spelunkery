@@ -71,7 +71,7 @@ public class CommonConfigs {
         builder.push("misc");
         CREATIVE_TAB = builder.define("spelunkery_creative_tab", false);
         GRINDSTONE_REWORK = builder.define("wip_grindstone_rework", false);
-        DIAMOND_GRINDSTONE_DEPLETE_CHANCE = builder.define("diamond_grindstone_deplete_chance", 20, 0, 128);
+        DIAMOND_GRINDSTONE_DEPLETE_CHANCE = builder.define("diamond_grindstone_deplete_chance", 64, 0, 128);
         PARACHUTE_DELAY = builder.define("parachute_opening_delay", 10, 0, 128);
         ENABLE_MORES = builder.define("enable_mores", true);
         ENABLE_ROUGH_GEMS = builder.define("enable_rough_gems", true);

@@ -31,9 +31,9 @@ public class ModWorldgenFeatures {
         Spelunkery.res("huge_conk"), () ->
             new HugeConkFungusFeature(HugeConkFungusFeatureConfig.CODEC));
 
-    public static final Supplier<Feature<HugeMushgloomFeatureConfig>> HUGE_MUSHGLOOM_FEATURE = RegHelper.registerFeature(
-        Spelunkery.res("huge_mushgloom"), () ->
-            new HugeMushgloomFeature(HugeMushgloomFeatureConfig.CODEC));
+    public static final Supplier<Feature<HugeForkingMushroomFeatureConfig>> HUGE_FORKING_MUSHROOM_FEATURE = RegHelper.registerFeature(
+        Spelunkery.res("huge_forking_mushroom"), () ->
+            new HugeForkingMushroomFeature(HugeForkingMushroomFeatureConfig.CODEC));
 
     public static final Supplier<Feature<WallMushroomFeatureConfig>> WALL_MUSHROOM_FEATURE = RegHelper.registerFeature(
         Spelunkery.res("wall_mushroom"), () ->

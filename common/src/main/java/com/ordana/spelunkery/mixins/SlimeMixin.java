@@ -71,8 +71,12 @@ public abstract class SlimeMixin extends Mob {
 
     protected void pickUpItem(ItemEntity itemEntity) {
         if (random.nextInt(CommonConfigs.SLIME_EAT_COOLDOWN.get()) == 1) {
-            if (itemEntity.getItem().is(ModTags.SLIME_FOOD)) {
-                ItemStack itemStack = itemEntity.getItem();
+
+            var magma = (Entity)this instanceof MagmaCube;
+            var itemStack = itemEntity.getItem();
+            boolean foodCheck = (magma && itemStack.is(ModTags.MAGMA_CUBE_FOOD)) || ((!magma) && itemStack.is(ModTags.SLIME_FOOD));
+
+            if (foodCheck) {
                 itemStack.setCount(itemStack.getCount() - 1);
                 itemEntity.setItem(itemStack);
                 this.playSound(SoundEvents.SLIME_SQUISH, 1.0F, 1.0F);
@@ -80,7 +84,7 @@ public abstract class SlimeMixin extends Mob {
 
                 int i = 1 + this.random.nextInt(this.getSize());
                 for (int j = 0; j < i; ++j) {
-                    if (random.nextInt(3) <= this.getSize()) this.spawnAtLocation(Items.SLIME_BALL);
+                    if (random.nextInt(3) <= this.getSize()) this.spawnAtLocation(magma ? Items.MAGMA_CREAM : Items.SLIME_BALL);
                 }
 
                 if (random.nextInt(CommonConfigs.SLIME_GROWTH_CHANCE.get()) == 1 && this.getSize() <= CommonConfigs.SLIME_GROWTH_MAX.get() && CommonConfigs.SLIME_GROWTH.get()) this.setSize(this.getSize() + 1, false);

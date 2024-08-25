@@ -13,6 +13,7 @@ import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -39,6 +40,10 @@ public class ModBlocks {
         return false;
     }
 
+    private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
+        return false;
+    }
+
     private static boolean ifIlluminated(BlockState state, BlockGetter blockGetter, BlockPos pos) {
         return state.getValue(ModBlockProperties.ILLUMINATED);
     }
@@ -48,7 +53,7 @@ public class ModBlocks {
     }
 
     private static boolean ifNotEmpty(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return state.getValue(CarvedNephriteBlock.CHARGE) != CarvedNephriteBlock.ChargeState.EMPTY;
+        return state.getValue(CarvedNephriteBlock.CHARGE) == CarvedNephriteBlock.ChargeState.FULL;
     }
 
     private static ToIntFunction<BlockState> createLightLevelFromIlluminatedBlockState(int litLevel) {
@@ -364,7 +369,7 @@ public class ModBlocks {
     public static final Supplier<Block> PHOSPHOR_FUNGUS = regWithItem("phosphor_fungus", () ->
         new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.copy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
     public static final Supplier<Block> MUSHGLOOM = regWithItem("mushgloom", () ->
-        new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.copy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
+        new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.copy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> MILLY_BUBCAP = regWithItem("milly_bubcap", () ->
         new MillyBubcapMushroomBlock(BlockBehaviour.Properties.copy(Blocks.POPPY).noCollission().instabreak().sound(SoundType.FUNGUS).offsetType(BlockBehaviour.OffsetType.XZ)));
 
@@ -381,7 +386,7 @@ public class ModBlocks {
     public static final Supplier<Block> POTTED_PHOSPHOR_FUNGUS = regBlock("potted_phosphor_fungus", () ->
         new FlowerPotBlock(PHOSPHOR_FUNGUS.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
     public static final Supplier<Block> POTTED_MUSHGLOOM = regBlock("potted_mushgloom", () ->
-        new FlowerPotBlock(MUSHGLOOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
+        new FlowerPotBlock(MUSHGLOOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> POTTED_MILLY_BUBCAP = regBlock("potted_milly_bubcap", () ->
         new FlowerPotBlock(MILLY_BUBCAP.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_SPOROPHYTE = regBlock("potted_sporophyte", () ->
@@ -398,9 +403,11 @@ public class ModBlocks {
     public static final Supplier<Block> MILLY_BUBCAP_BLOCK = regWithItem("milly_bubcap_block", () ->
         new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BROWN).strength(0.2F).sound(SoundType.WOOD)));
     public static final Supplier<Block> PHOSPHOR_FUNGUS_BLOCK = regWithItem("phosphor_fungus_block", () ->
-        new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 5)));
+        new PhosphorFungusBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).noOcclusion().isValidSpawn(ModBlocks::never).isRedstoneConductor(ModBlocks::never).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never)));
+    public static final Supplier<Block> PHOSPHOR_SHROOMLIGHT = regWithItem("phosphor_shroomlight", () ->
+        new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).mapColor(MapColor.COLOR_CYAN).sound(SoundType.SHROOMLIGHT).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> MUSHGLOOM_BLOCK = regWithItem("mushgloom_block", () ->
-        new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 5)));
+        new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> CAVE_MUSHROOM_STEM = regWithItem("cave_mushroom_stem", () ->
         new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.MUSHROOM_STEM).mapColor(MapColor.TERRACOTTA_GRAY).strength(0.2F).sound(SoundType.WOOD)));
 

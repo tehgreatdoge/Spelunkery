@@ -77,6 +77,7 @@ public class SpelunkeryClient {
         ClientHelper.registerRenderType(ModBlocks.POTTED_CRIMINI.get(), RenderType.cutout());
         ClientHelper.registerRenderType(ModBlocks.POTTED_BUTTON_MUSHROOM.get(), RenderType.cutout());
         ClientHelper.registerRenderType(ModBlocks.POTTED_SPOROPHYTE.get(), RenderType.cutout());
+        ClientHelper.registerRenderType(ModBlocks.PHOSPHOR_FUNGUS_BLOCK.get(), RenderType.translucent());
 
         ClientHelper.registerRenderType(ModBlocks.NEPHRITE_FOUNTAIN.get(), RenderType.cutout());
 

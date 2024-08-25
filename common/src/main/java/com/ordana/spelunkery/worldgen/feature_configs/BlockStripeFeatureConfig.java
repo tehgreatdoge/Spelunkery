@@ -14,33 +14,21 @@ import java.util.List;
 
 public class BlockStripeFeatureConfig implements FeatureConfiguration {
 
-    public static final Codec<BlockStripeFeatureConfig> CODEC = RecordCodecBuilder.create((instance)
-            -> instance.group(
+    public static final Codec<BlockStripeFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 
-                    RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("first_target").forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.firstTarget),
-                    Codec.list(StoneEntry.CODEC).fieldOf("first_target_placer").forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.firstTargetPlacer),
-                    Codec.BOOL.fieldOf("use_second_target").orElse(false).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.useSecondTarget),
-                    RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("second_target").orElse(null).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.secondTarget),
-                    Codec.list(StoneEntry.CODEC).fieldOf("second_target_placer").orElse(null).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.secondTargetPlacer),
+            RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("first_target").forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.firstTarget),
+            Codec.list(StoneEntry.CODEC).fieldOf("first_target_placer").forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.firstTargetPlacer),
+            Codec.BOOL.fieldOf("use_second_target").orElse(false).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.useSecondTarget),
+            RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("second_target").orElse(null).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.secondTarget),
+            Codec.list(StoneEntry.CODEC).fieldOf("second_target_placer").orElse(null).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.secondTargetPlacer),
 
-                    Codec.BOOL.fieldOf("use_biome_filter").orElse(false).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.useBiomeFilter),
-                    RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").orElse(null).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.biomes),
-                    Codec.floatRange(0.0F, 1.0F).fieldOf("blank_patch_chance").orElse(0.0f).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.blankPatchChance),
+            Codec.BOOL.fieldOf("use_biome_filter").orElse(false).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.useBiomeFilter),
+            RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").orElse(null).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.biomes),
+            Codec.floatRange(0.0F, 1.0F).fieldOf("blank_patch_chance").orElse(0.0f).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.blankPatchChance),
 
-                    Codec.BOOL.fieldOf("use_height_filter").orElse(false).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.useHeightFilter),
-                    Codec.intRange(0, 64).fieldOf("surface_offset").orElse(0).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.surfaceOffset),
-                    Codec.intRange(0, 64).fieldOf("bottom_offset").orElse(0).forGetter((blockStripeFeatureConfig)
-                            -> blockStripeFeatureConfig.bottomOffset))
+            Codec.BOOL.fieldOf("use_height_filter").orElse(false).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.useHeightFilter),
+            Codec.intRange(0, 64).fieldOf("surface_offset").orElse(0).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.surfaceOffset),
+            Codec.intRange(0, 64).fieldOf("bottom_offset").orElse(0).forGetter((blockStripeFeatureConfig) -> blockStripeFeatureConfig.bottomOffset))
 
             .apply(instance, BlockStripeFeatureConfig::new));
 

@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "#forge:raw_pork",
     "#forge:raw_fishes",

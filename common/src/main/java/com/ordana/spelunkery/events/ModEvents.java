@@ -1,6 +1,7 @@
 package com.ordana.spelunkery.events;
 
 import com.ordana.spelunkery.Spelunkery;
+import com.ordana.spelunkery.blocks.DiamondGrindstoneBlock;
 import com.ordana.spelunkery.blocks.PortalFluidCauldronBlock;
 import com.ordana.spelunkery.configs.CommonConfigs;
 import com.ordana.spelunkery.items.PortalFluidBottleItem;
@@ -67,6 +68,7 @@ public class ModEvents {
         EVENTS.add(ModEvents::portalCauldronLogic);
         EVENTS.add(ModEvents::saltBoiling);
         EVENTS.add(ModEvents::anvilRepairing);
+        EVENTS.add(ModEvents::disenchant);
         if (!CommonConfigs.GRINDSTONE_REWORK.get()) EVENTS.add(ModEvents::polishingRecipe);
     }
 
@@ -194,6 +196,39 @@ public class ModEvents {
         return InteractionResult.PASS;
     }
 
+    private static InteractionResult anvilRepairing(Item item, ItemStack stack, BlockPos pos, BlockState state,
+                                                    Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.is(ModTags.ANVIL_REPAIR_ITEM)) {
+            if (state.is(BlockTags.ANVIL) && !state.is(Blocks.ANVIL)) {
+                level.playSound(player, pos, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
+                level.playSound(player, pos, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
+                ParticleUtils.spawnParticlesOnBlockFaces(level, pos, new BlockParticleOption(ParticleTypes.BLOCK, state), UniformInt.of(3, 5));
+                if (player instanceof ServerPlayer serverPlayer) {
+                    if (!player.getAbilities().instabuild) stack.shrink(1);
+                    if (state.is(Blocks.CHIPPED_ANVIL)) level.setBlockAndUpdate(pos, Blocks.ANVIL.defaultBlockState().getBlock().withPropertiesOf(state));
+                    else if (state.is(Blocks.DAMAGED_ANVIL)) level.setBlockAndUpdate(pos, Blocks.CHIPPED_ANVIL.defaultBlockState().getBlock().withPropertiesOf(state));
+                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
+                }
+                return InteractionResult.sidedSuccess(level.isClientSide);
+
+            }
+        }
+        return InteractionResult.PASS;
+    }
+
+    private static InteractionResult disenchant(Item item, ItemStack stack, BlockPos pos, BlockState state,
+                                                     Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
+        var depleted = (state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) == 3) || state.is(Blocks.GRINDSTONE);
+
+        //handle enchants
+        if (stack.isEnchanted() && player.isCrouching()) {
+            if (level instanceof ServerLevel serverLevel) ExperienceOrb.award(serverLevel, Vec3.atCenterOf(pos), getExperienceFromItem(stack, depleted));
+            player.setItemInHand(hand, removeEnchants(stack, stack.getDamageValue(), depleted));
+            return InteractionResult.SUCCESS;
+        }
+        else return InteractionResult.PASS;
+    }
+
 
     private static InteractionResult polishingRecipe(Item item, ItemStack stack, BlockPos pos, BlockState state,
                                                      Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
@@ -221,7 +256,7 @@ public class ModEvents {
                     ItemStack byproductItem = byproduct.copy();
                     if (player.isShiftKeyDown() && stack.is(ModTags.GRINDSTONE_REPAIR_ITEM) && state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) > 0) {
                         if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
-                        level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) - 1));
+                        level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, 0));
                         if (!player.getAbilities().instabuild) stack.shrink(1);
                     }
                     else if (state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) == 3 && polishingRecipe.isRequiresDiamondGrindstone() || (polishingRecipe.isRequiresDiamondGrindstone() && !state.is(ModBlocks.DIAMOND_GRINDSTONE.get()))) {
@@ -277,7 +312,8 @@ public class ModEvents {
                         player.swing(hand);
                         level.playSound(player, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
                     }
-                    var chance = random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
+                    var depl = CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get();
+                    var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
                     if (chance > 0) {
                         if (chance == 1 && polishingRecipe.isRequiresDiamondGrindstone() && state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) < 3) level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
                     }
@@ -289,100 +325,78 @@ public class ModEvents {
         return InteractionResult.PASS;
     }
 
-    private static InteractionResult anvilRepairing(Item item, ItemStack stack, BlockPos pos, BlockState state,
-                                                    Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
-        if (stack.is(ModTags.ANVIL_REPAIR_ITEM)) {
-            if (state.is(BlockTags.ANVIL) && !state.is(Blocks.ANVIL)) {
-                level.playSound(player, pos, SoundEvents.ANVIL_HIT, SoundSource.BLOCKS, 1.0f, 1.0f);
-                level.playSound(player, pos, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 1.0f, 1.0f);
-                ParticleUtils.spawnParticlesOnBlockFaces(level, pos, new BlockParticleOption(ParticleTypes.BLOCK, state), UniformInt.of(3, 5));
-                if (player instanceof ServerPlayer serverPlayer) {
-                    if (!player.getAbilities().instabuild) stack.shrink(1);
-                    if (state.is(Blocks.CHIPPED_ANVIL)) level.setBlockAndUpdate(pos, Blocks.ANVIL.defaultBlockState().getBlock().withPropertiesOf(state));
-                    else if (state.is(Blocks.DAMAGED_ANVIL)) level.setBlockAndUpdate(pos, Blocks.CHIPPED_ANVIL.defaultBlockState().getBlock().withPropertiesOf(state));
-                    CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
-                }
-                return InteractionResult.sidedSuccess(level.isClientSide);
-
-            }
-        }
-        return InteractionResult.PASS;
-    }
-
     public static InteractionResult useGrindstone(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit, boolean diamondGrindstone) {
         var itemStack = player.getItemInHand(hand);
 
         if (itemStack.getItem() == Items.AIR) {
-            if (level.isClientSide) {
-                return InteractionResult.SUCCESS;
-            } else {
-                player.openMenu(state.getMenuProvider(level, pos));
-                player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
-                return InteractionResult.CONSUME;
-            }
-        };
+            player.openMenu(state.getMenuProvider(level, pos));
+            return InteractionResult.SUCCESS;
+        }
+
+
+        var success = false;
+        var depleted = true;
+        if (diamondGrindstone) depleted = state.getValue(ModBlockProperties.DEPLETION) == 3;
         var itemName = Utils.getID(itemStack.getItem()).getPath();
 
-        //effects
-        if (level.isClientSide()) {
-            ParticleUtil.spawnParticlesOnBlockFaces(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemStack), UniformInt.of(3, 5), -0.05f, 0.05f, false);
-            player.swing(hand);
-        }
-        level.playSound(null, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
-
-        player.startUsingItem(hand);
-        player.releaseUsingItem();
-
         if (!level.isClientSide()) {
-            var depleted = true;
-            if (diamondGrindstone) {
-                depleted = state.getValue(ModBlockProperties.DEPLETION) == 3;
-            }
+            //find loot table for held item
+            var tablePath = Spelunkery.res("gameplay/" + (diamondGrindstone && !depleted ? "diamond_" : "") + "grindstone_polishing/" + itemName);
+            var lootTable = level.getServer().getLootData().getLootTable(tablePath);
 
-            //handle enchants
-            if (itemStack.isEnchanted()) {
-                ExperienceOrb.award((ServerLevel)level, Vec3.atCenterOf(pos), getExperienceFromItem(itemStack, depleted));
-                //var newStack = new ItemStack(itemStack.getItem());
-                //newStack.setDamageValue(itemStack.getDamageValue());
-                player.setItemInHand(hand, removeEnchants(itemStack, itemStack.getDamageValue(), depleted));
-                return InteractionResult.CONSUME;
-            }
-
-            var tablePath = Spelunkery.res("gameplay/" + (diamondGrindstone && depleted ? "" : "diamond_") + "grindstone_polishing/" + itemName);
-            var lootTable = Objects.requireNonNull(level.getServer()).getLootData().getLootTable(tablePath);
             LootParams.Builder builder = (new LootParams.Builder((ServerLevel) level))
-                .withParameter(LootContextParams.BLOCK_STATE, level.getBlockState(pos))
-                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                .withParameter(LootContextParams.TOOL, ItemStack.EMPTY);
+                    .withParameter(LootContextParams.BLOCK_STATE, level.getBlockState(pos))
+                    .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                    .withParameter(LootContextParams.TOOL, ItemStack.EMPTY);
 
             var lootItem = lootTable.getRandomItems(builder.create(LootContextParamSets.BLOCK));
 
-            if (lootItem.size() == 0) return InteractionResult.FAIL;
-
+            //fail if no loot table present
+            if (lootItem.isEmpty()) {
+                player.openMenu(state.getMenuProvider(level, pos));
+                player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
+                return InteractionResult.SUCCESS;
+            }
 
             //give loot items and xp
             for (ItemStack stack : lootItem) {
                 if (!player.getInventory().add(stack)) {
                     player.drop(stack, false);
                 }
-                if (tablePath.getPath().contains("rough")) ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(pos), depleted ? 1 : 2);
+                ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(pos), !tablePath.getPath().contains("rough") ? 0 : depleted ? 1 : 2);
             }
+            success = true;
+        }
+
+        //effects
+        if (level.isClientSide()) {
+            ParticleUtil.spawnParticlesOnBlockFaces(level, pos, new ItemParticleOption(ParticleTypes.ITEM, itemStack), UniformInt.of(3, 5), -0.05f, 0.05f, false);
+            player.swing(hand);
+        }
+
+        if (success) {
 
             //depletion
-            var chance = level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
+            var depl = CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get();
+            var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
             if (chance > 0 && diamondGrindstone) {
-                if (chance == 1 && !depleted) level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
+                if (chance == 1 && !depleted)
+                    level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
             }
 
             //subtract
-            if (!player.getAbilities().instabuild) {
+            if (!player.getAbilities().instabuild && !level.isClientSide()) {
                 itemStack.shrink(1);
             }
+
+            level.playSound(null, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.5F, 0.0F);
+
+            player.startUsingItem(hand);
+            player.releaseUsingItem();
+            return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.CONSUME;
-
-
+        return InteractionResult.SUCCESS;
     }
 
 
