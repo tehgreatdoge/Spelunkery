@@ -123,7 +123,7 @@ public class FloorAndSidesMushroomBlock extends Block implements BonemealableBlo
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
-        return state.getValue(FLOOR) && level.getBlockState(pos.below()).is(BlockTags.MUSHROOM_GROW_BLOCK);
+        return state.getValue(FLOOR) && (level.getBlockState(pos.below()).is(BlockTags.MUSHROOM_GROW_BLOCK) || pos.getY() < 0);
     }
 
     @Override

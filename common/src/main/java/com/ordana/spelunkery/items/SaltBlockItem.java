@@ -21,9 +21,8 @@ public class SaltBlockItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag context) {
-        if (ClientConfigs.ENABLE_TOOLTIPS.get() && !CommonConfigs.GRINDSTONE_REWORK.get()) {
+        if (ClientConfigs.ENABLE_TOOLTIPS.get()) {
             tooltip.add(Component.translatable("tooltip.spelunkery.salt_1").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
-            tooltip.add(Component.translatable("tooltip.spelunkery.salt_2").setStyle(Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
         }
     }
 }

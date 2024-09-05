@@ -63,7 +63,7 @@ public class PortalFluidBlock extends LiquidBlock {
         if (CommonConfigs.INSTANT_TELEPORTATION.get()) {
             if (entity instanceof ServerPlayer player) LevelHelper.teleportToSpawnPosition(player);
             else LevelHelper.teleportToWorldspawn(level, entity);
-            entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 1.0f, 1.0f);
+            entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 0.5f, 1.0f);
         }
         else {
             tickCounter++;
@@ -77,7 +77,7 @@ public class PortalFluidBlock extends LiquidBlock {
 
                 if (entity instanceof ServerPlayer player) LevelHelper.teleportToSpawnPosition(player);
                 else LevelHelper.teleportToWorldspawn(level, entity);
-                entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 1.0f, 1.0f);
+                entity.playSound(ModSoundEvents.PORTAL_FLUID_TELEPORT.get(), 0.5f, 1.0f);
 
 
                 setTickCounter(0);

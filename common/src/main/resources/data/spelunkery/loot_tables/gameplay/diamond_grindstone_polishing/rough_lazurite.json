@@ -15,14 +15,27 @@
     },
     {
       "rolls": {
-        "min": 0,
-        "max": 2
+        "min": 1,
+        "max": 3
       },
       "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "spelunkery:raw_gold_nugget"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 3,
+        "max": 5
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:experience_bottle"
         }
       ]
     }

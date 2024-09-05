@@ -147,14 +147,7 @@ public class DiamondGrindstoneBlock extends GrindstoneBlock {
     }
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (CommonConfigs.GRINDSTONE_REWORK.get()) return ModEvents.useGrindstone(state, level, pos, player, hand, hit, true);
-        else if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
-        } else {
-            player.openMenu(state.getMenuProvider(level, pos));
-            player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
-            return InteractionResult.CONSUME;
-        }
+        return ModEvents.useGrindstone(state, level, pos, player, hand, hit, true);
     }
 
     public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {

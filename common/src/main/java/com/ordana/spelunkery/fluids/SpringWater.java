@@ -16,6 +16,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluid;
@@ -76,6 +77,9 @@ public class SpringWater extends ModFlowingFluid {
             double e = (double)pos.getY() + 1.0D;
             double f = (double)pos.getZ() + random.nextDouble();
             level.addParticle(random.nextFloat() > 0.8 ? ParticleTypes.CAMPFIRE_COSY_SMOKE : ParticleTypes.BUBBLE_POP, d, e + (random.nextFloat() / 10), f, 0.0D, 0.05D + (random.nextFloat() / 10), 0.0D);
+        }
+        if (state.isSource() && random.nextInt(10) == 0) {
+            level.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, 0.5F - (random.nextFloat() / 5), false);
         }
         if (!state.isSource() && !(Boolean)state.getValue(FALLING)) {
             if (random.nextInt(64) == 0) {

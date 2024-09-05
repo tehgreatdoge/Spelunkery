@@ -8,6 +8,7 @@ public class ModCompostable {
         RegHelper.registerCompostable(ModBlocks.INKCAP_MUSHROOM_BLOCK.get().asItem(), 0.85f);
         RegHelper.registerCompostable(ModBlocks.WHITE_INKCAP_MUSHROOM_BLOCK.get().asItem(), 0.85f);
         RegHelper.registerCompostable(ModBlocks.PHOSPHOR_FUNGUS_BLOCK.get().asItem(), 0.85f);
+        RegHelper.registerCompostable(ModBlocks.PHOSPHOR_SHROOMLIGHT.get().asItem(), 0.65f);
         RegHelper.registerCompostable(ModBlocks.MUSHGLOOM_BLOCK.get().asItem(), 0.85f);
         RegHelper.registerCompostable(ModBlocks.CONK_FUNGUS_BLOCK.get().asItem(), 0.85f);
         RegHelper.registerCompostable(ModBlocks.PORTABELLA_BLOCK.get().asItem(), 0.85f);

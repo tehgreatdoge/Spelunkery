@@ -19,7 +19,8 @@
     "gray": { "r": 114, "g": 137, "b": 150, "a": 200 },
     "light_gray": { "r": 145, "g": 155, "b": 161, "a": 200 },
     "phosphor_blue": { "r": 16, "g": 163, "b": 226, "a": 150 },
-    "mushgloom_green": { "r": 102, "g": 201, "b": 205, "a": 150 }
+    "mushgloom_green": { "r": 102, "g": 201, "b": 205, "a": 150 },
+    "nephrite_green": { "r": 117, "g": 229, "b": 0, "a": 150 }
   },
   "Bloom": [
     { "block": "spelunkery:glowstick" },
@@ -61,6 +62,8 @@
 
     { "block": "spelunkery:phosphor_fungus" },
     { "block": "spelunkery:potted_phosphor_fungus" },
+    { "block": "spelunkery:phosphor_fungus_block" },
+    { "block": "spelunkery:phosphor_shroomlight" },
     { "block": "spelunkery:mushgloom" },
     { "block": "spelunkery:potted_mushgloom" }
   ],
@@ -100,9 +103,14 @@
     { "block": "spelunkery:salt_lamp", "state": { "illuminated": true }, "color": "#orange", "radius": 7 },
     { "block": "spelunkery:rock_salt", "state": { "illuminated": true }, "color": "#orange", "radius": 1 },
 
+    { "block": "spelunkery:carved_nephrite", "state": { "charge": "FULL" }, "color": "#nephrite_green", "radius": 1 },
+
     { "block": "spelunkery:phosphor_fungus", "color": "#phosphor_blue", "radius": 2 },
     { "block": "spelunkery:potted_phosphor_fungus", "color": "#phosphor_blue", "radius": 2 },
+    { "block": "spelunkery:phosphor_fungus_block", "color": "#phosphor_blue", "radius": 2 },
+    { "block": "spelunkery:phosphor_shroomlight", "color": "#phosphor_blue", "radius": 2 },
     { "block": "spelunkery:mushgloom", "color": "#mushgloom_green", "radius": 2 },
+    { "block": "spelunkery:mushgloom_block", "color": "#mushgloom_green", "radius": 2 },
     { "block": "spelunkery:potted_mushgloom", "color": "#mushgloom_green", "radius": 2 }
   ],
   "LightItem": [
@@ -126,6 +134,9 @@
     { "item_id": "spelunkery:light_gray_glowstick", "color": "#light_gray", "radius": 7 },
 
     { "item_id": "spelunkery:phosphor_fungus", "color": "#phosphor_blue", "radius": 2 },
-    { "item_id": "spelunkery:mushgloom", "color": "#mushgloom_green", "radius": 2 }
+    { "item_id": "spelunkery:phosphor_fungus_block", "color": "#phosphor_blue", "radius": 2 },
+    { "item_id": "spelunkery:phosphor_shroomlight", "color": "#phosphor_blue", "radius": 2 },
+    { "item_id": "spelunkery:mushgloom", "color": "#mushgloom_green", "radius": 2 },
+    { "item_id": "spelunkery:mushgloom_block", "color": "#mushgloom_green", "radius": 2 }
   ]
 }

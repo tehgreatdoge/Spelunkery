@@ -15,7 +15,6 @@ public class CommonConfigs {
 
     public static Supplier<Boolean> CREATIVE_TAB;
     //public static Supplier<Boolean> CROSS_SECTION;
-    public static Supplier<Boolean> GRINDSTONE_REWORK;
     public static Supplier<Integer> DIAMOND_GRINDSTONE_DEPLETE_CHANCE;
     public static Supplier<Integer> PARACHUTE_DELAY;
     public static Supplier<Boolean> ENABLE_ROUGH_GEMS;
@@ -70,7 +69,6 @@ public class CommonConfigs {
 
         builder.push("misc");
         CREATIVE_TAB = builder.define("spelunkery_creative_tab", false);
-        GRINDSTONE_REWORK = builder.define("wip_grindstone_rework", false);
         DIAMOND_GRINDSTONE_DEPLETE_CHANCE = builder.define("diamond_grindstone_deplete_chance", 64, 0, 128);
         PARACHUTE_DELAY = builder.define("parachute_opening_delay", 10, 0, 128);
         ENABLE_MORES = builder.define("enable_mores", true);

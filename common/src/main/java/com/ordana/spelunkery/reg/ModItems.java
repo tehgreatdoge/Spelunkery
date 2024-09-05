@@ -46,7 +46,7 @@ public class ModItems {
             new PebbleItem(new Item.Properties()));
 
     public static final Supplier<Item> ROCK_SALT = regItem("rock_salt", () ->
-            new RockSaltBlockItem(ModBlocks.ROCK_SALT.get(), new Item.Properties()));
+            new BlockItem(ModBlocks.ROCK_SALT.get(), new Item.Properties()));
     public static final Supplier<Item> SALT = regItem("salt", () ->
             new SaltBlockItem(ModBlocks.SALT.get(), new Item.Properties()));
     public static final Supplier<Item> NEPHRITE_CHUNK = regItem("nephrite_chunk", () ->

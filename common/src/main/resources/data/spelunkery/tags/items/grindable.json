@@ -1,15 +1,8 @@
 {
   "values": [
-    "spelunkery:rough_cinnabar_shard",
-    "spelunkery:rough_lazurite_shard",
     "spelunkery:rough_cinnabar",
     "spelunkery:rough_lazurite",
-    "spelunkery:rough_cinnabar_block",
-    "spelunkery:rough_lazurite_block",
-    {
-      "id": "sullysmod:rough_jade",
-      "required": false
-    },
-    "spelunkery:rough_jade_shard"
+    "spelunkery:rock_salt",
+    "minecraft:lapis_lazuli"
   ]
 }
