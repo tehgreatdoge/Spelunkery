@@ -262,6 +262,13 @@ public class ModEvents {
 
             var lootItem = lootTable.getRandomItems(builder.create(LootContextParamSets.BLOCK));
 
+            if (lootItem.isEmpty()) {
+                tablePath = Spelunkery.res("gameplay/grindstone_polishing/" + itemName);
+                var lootTable2 = level.getServer().getLootData().getLootTable(tablePath);
+
+                lootItem = lootTable2.getRandomItems(builder.create(LootContextParamSets.BLOCK));
+            }
+
             //fail if no loot table present
             if (lootItem.isEmpty()) {
                 player.openMenu(state.getMenuProvider(level, pos));
@@ -280,6 +287,16 @@ public class ModEvents {
                 }
             }
             success = true;
+
+            //depletion
+            if (tablePath.getPath().contains("diamond")) {
+                var depl = CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get();
+                var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
+                if (chance > 0 && diamondGrindstone) {
+                    if (chance == 1 && !depleted)
+                        level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
+                }
+            }
         }
 
         //effects
@@ -289,14 +306,6 @@ public class ModEvents {
         }
 
         if (success) {
-
-            //depletion
-            var depl = CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get();
-            var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
-            if (chance > 0 && diamondGrindstone) {
-                if (chance == 1 && !depleted)
-                    level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
-            }
 
             //subtract
             if (!player.getAbilities().instabuild && !level.isClientSide()) {
