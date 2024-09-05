@@ -96,7 +96,9 @@ public class PortalFluidBottleItem extends HoneyBottleItem {
             if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), Minecraft.getInstance().options.keyShift.key.getValue())) {
                 tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_1").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
                 tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_2").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
-                tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_3").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
+                if (CommonConfigs.CRYING_OBSIDIAN_PORTAL_FLUID.get() && CommonConfigs.RESPAWN_ANCHOR_PORTAL_FLUID.get()) tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_3c").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
+                else if (CommonConfigs.CRYING_OBSIDIAN_PORTAL_FLUID.get()) tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_3a").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
+                else if (CommonConfigs.RESPAWN_ANCHOR_PORTAL_FLUID.get()) tooltip.add(Component.translatable("tooltip.spelunkery.portal_fluid_3b").setStyle(Style.EMPTY.applyFormat(ChatFormatting.GRAY)));
             } else {
                 tooltip.add(TranslationUtils.CROUCH.component());
             }
