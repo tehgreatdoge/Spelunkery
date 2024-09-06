@@ -1,9 +1,7 @@
 package com.ordana.spelunkery.mixins;
 
-import com.ordana.spelunkery.configs.CommonConfigs;
 import com.ordana.spelunkery.events.ModEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;

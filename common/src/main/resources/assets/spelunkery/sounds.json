@@ -68,5 +68,11 @@
     "sounds": [
       "spelunkery:item/pebble/knob"
     ]
+  },
+  "spring_water_pop": {
+    "subtitle": "subtitles.block.spring_water.pop",
+    "sounds": [
+      "spelunkery:block/spring_water/bubble1"
+    ]
   }
 }

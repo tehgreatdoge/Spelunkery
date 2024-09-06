@@ -1,7 +1,6 @@
 package com.ordana.spelunkery.items;
 
 import com.ordana.spelunkery.configs.ClientConfigs;
-import com.ordana.spelunkery.configs.CommonConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;

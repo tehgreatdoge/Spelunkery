@@ -162,6 +162,10 @@ public class ModCreativeTabs {
                 ModBlocks.CAVE_MUSHROOM_STEM
         );
 
+        after(e, Items.SHROOMLIGHT, CreativeModeTabs.NATURAL_BLOCKS,
+                ModBlocks.PHOSPHOR_SHROOMLIGHT
+        );
+
         after(e, Items.RED_MUSHROOM_BLOCK, CreativeModeTabs.NATURAL_BLOCKS,
                 ModBlocks.PORTABELLA_BLOCK,
                 ModBlocks.CONK_FUNGUS_BLOCK, ModBlocks.INKCAP_MUSHROOM_BLOCK, ModBlocks.WHITE_INKCAP_MUSHROOM_BLOCK,

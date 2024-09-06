@@ -2,10 +2,12 @@ package com.ordana.spelunkery.fluids;
 
 import com.ordana.spelunkery.reg.ModFluids;
 import com.ordana.spelunkery.reg.ModItems;
+import com.ordana.spelunkery.reg.ModSoundEvents;
+import com.ordana.spelunkery.reg.ModTags;
 import net.mehvahdjukaar.moonlight.api.client.ModFluidRenderProperties;
 import net.mehvahdjukaar.moonlight.api.fluids.ModFlowingFluid;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +18,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BubbleColumnBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluid;
@@ -72,14 +73,20 @@ public class SpringWater extends ModFlowingFluid {
 
 
     public void animateTick(Level level, BlockPos pos, FluidState state, RandomSource random) {
-        if (random.nextInt(3) == 0) {
+        var ran = random.nextFloat();
+        var chance = 3;
+
+        for (var direction : Direction.Plane.HORIZONTAL) {
+            if (level.getFluidState(pos.relative(direction, 2)).is(ModTags.SPRING_WATER)) chance += 25;
+        }
+        if (random.nextInt(chance) == 0 && level.getBlockState(pos.above()).isAir()) {
             double d = (double)pos.getX() + random.nextDouble();
             double e = (double)pos.getY() + 1.0D;
             double f = (double)pos.getZ() + random.nextDouble();
-            level.addParticle(random.nextFloat() > 0.8 ? ParticleTypes.CAMPFIRE_COSY_SMOKE : ParticleTypes.BUBBLE_POP, d, e + (random.nextFloat() / 10), f, 0.0D, 0.05D + (random.nextFloat() / 10), 0.0D);
-        }
-        if (state.isSource() && random.nextInt(10) == 0) {
-            level.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.75F, 0.5F - (random.nextFloat() / 5), false);
+            level.addParticle(ran > 0.8 ? ParticleTypes.CAMPFIRE_COSY_SMOKE : ParticleTypes.BUBBLE_POP, d, e + (random.nextFloat() / 10), f, 0.0D, 0.05D + (random.nextFloat() / 10), 0.0D);
+            if (ran <= 0.8) {
+                level.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, ModSoundEvents.POP.get(), SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.25F, 0.1F + (random.nextFloat() / 2), false);
+            }
         }
         if (!state.isSource() && !(Boolean)state.getValue(FALLING)) {
             if (random.nextInt(64) == 0) {
