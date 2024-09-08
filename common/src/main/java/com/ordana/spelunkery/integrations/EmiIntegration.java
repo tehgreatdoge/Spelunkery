@@ -111,35 +111,11 @@ public class EmiIntegration implements EmiPlugin {
         }
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/cinnabar_shard"))
-            .rightInput(grindstone, true)
-            .leftInput(EmiStack.of(ModItems.ROUGH_CINNABAR_SHARD.get()))
-            .output(EmiStack.of(ModItems.CINNABAR_SHARD.get()))
-            .output(EmiStack.of(Items.REDSTONE))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
             .id(new ResourceLocation("spelunkery", "/cinnabar"))
             .rightInput(grindstone, true)
             .leftInput(EmiStack.of(ModItems.ROUGH_CINNABAR.get()))
             .output(EmiStack.of(ModItems.CINNABAR.get()))
             .output(EmiStack.of(Items.REDSTONE))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/cinnabar_block"))
-            .rightInput(grindstone, true)
-            .leftInput(EmiStack.of(ModBlocks.ROUGH_CINNABAR_BLOCK.get()))
-            .output(EmiStack.of(ModBlocks.CINNABAR_BLOCK.get()))
-            .output(EmiStack.of(Items.REDSTONE))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/lazurite_shard"))
-            .rightInput(grindstone, true)
-            .leftInput(EmiStack.of(ModItems.ROUGH_LAZURITE_SHARD.get()))
-            .output(EmiStack.of(ModItems.LAPIS_LAZULI_SHARD.get()))
-            .output(EmiStack.of(ModItems.RAW_GOLD_NUGGET.get()))
             .build());
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
@@ -151,21 +127,6 @@ public class EmiIntegration implements EmiPlugin {
             .build());
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/lazurite_block"))
-            .rightInput(grindstone, true)
-            .leftInput(EmiStack.of(ModBlocks.ROUGH_LAZURITE_BLOCK.get()))
-            .output(EmiStack.of(Blocks.LAPIS_BLOCK))
-            .output(EmiStack.of(ModItems.RAW_GOLD_NUGGET.get()))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/emerald_shard"))
-            .rightInput(diamondGrindstone, true)
-            .leftInput(EmiStack.of(ModItems.ROUGH_EMERALD_SHARD.get()))
-            .output(EmiStack.of(ModItems.EMERALD_SHARD.get()))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
             .id(new ResourceLocation("spelunkery", "/emerald"))
             .rightInput(diamondGrindstone, true)
             .leftInput(EmiStack.of(ModItems.ROUGH_EMERALD.get()))
@@ -173,31 +134,10 @@ public class EmiIntegration implements EmiPlugin {
             .build());
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/emerald_block"))
-            .rightInput(diamondGrindstone, true)
-            .leftInput(EmiStack.of(ModBlocks.ROUGH_EMERALD_BLOCK.get()))
-            .output(EmiStack.of(Blocks.EMERALD_BLOCK))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/diamond_shard"))
-            .rightInput(diamondGrindstone, true)
-            .leftInput(EmiStack.of(ModItems.ROUGH_DIAMOND_SHARD.get()))
-            .output(EmiStack.of(ModItems.DIAMOND_SHARD.get()))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
             .id(new ResourceLocation("spelunkery", "/diamond"))
             .rightInput(diamondGrindstone, true)
             .leftInput(EmiStack.of(ModItems.ROUGH_DIAMOND.get()))
             .output(EmiStack.of(Items.DIAMOND))
-            .build());
-
-        registry.addRecipe(EmiWorldInteractionRecipe.builder()
-            .id(new ResourceLocation("spelunkery", "/diamond_block"))
-            .rightInput(diamondGrindstone, true)
-            .leftInput(EmiStack.of(ModBlocks.ROUGH_DIAMOND_BLOCK.get()))
-            .output(EmiStack.of(Blocks.DIAMOND_BLOCK))
             .build());
 
 
@@ -413,8 +353,6 @@ public class EmiIntegration implements EmiPlugin {
             .output(EmiStack.of(ModItems.RAW_GOLD_NUGGET.get()).setChance(10f / 85f))
             .output(EmiStack.of(ModBlocks.SULFUR.get()).setChance(15f / 85f))
             .build());
-
-
 
         registry.addRecipe(EmiWorldInteractionRecipe.builder()
             .id(new ResourceLocation("spelunkery", "/lava_passive"))

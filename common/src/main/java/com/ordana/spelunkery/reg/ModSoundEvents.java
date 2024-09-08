@@ -21,7 +21,8 @@ public class ModSoundEvents {
     public static RegSupplier<SoundEvent> BOAT_PADDLE_PORTAL_FLUID = registerSoundEvent("boat_paddle_portal_fluid");
     public static RegSupplier<SoundEvent> BONK = registerSoundEvent("bonk");
     public static RegSupplier<SoundEvent> KNOB = registerSoundEvent("knob");
-    public static RegSupplier<SoundEvent> POP = registerSoundEvent("spring_water_pop");
+    public static RegSupplier<SoundEvent> SPRING_WATER_AMBIENT = registerSoundEvent("spring_water_ambient");
+    public static RegSupplier<SoundEvent> SPRING_WATER_POP = registerSoundEvent("spring_water_pop");
 
     @NotNull
     private static RegSupplier<SoundEvent> registerSoundEvent(@NotNull String name) {

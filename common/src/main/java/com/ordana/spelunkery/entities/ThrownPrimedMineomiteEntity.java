@@ -30,10 +30,11 @@ public class ThrownPrimedMineomiteEntity extends ImprovedProjectileEntity {
         return ModItems.MINEOMITE.get();
     }
 
-    public void spawnTrailParticles(Vec3 currentPos, Vec3 newPos) {
+    public void spawnTrailParticles() {
         for (int i = 0; i < 4; ++i) {
             this.level.addParticle(random.nextBoolean() ? ParticleTypes.FLAME : ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5, this.getZ(), 0.0D, 0.0D, 0.0D);
         }
+        super.spawnTrailParticles();
     }
 
     @Override

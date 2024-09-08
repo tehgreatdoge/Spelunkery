@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.LavaFluid;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -76,6 +77,9 @@ public class SpringWater extends ModFlowingFluid {
         var ran = random.nextFloat();
         var chance = 3;
 
+        if (random.nextInt(200) == 0) {
+            level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSoundEvents.SPRING_WATER_AMBIENT.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+        }
         for (var direction : Direction.Plane.HORIZONTAL) {
             if (level.getFluidState(pos.relative(direction, 2)).is(ModTags.SPRING_WATER)) chance += 25;
         }
@@ -85,7 +89,7 @@ public class SpringWater extends ModFlowingFluid {
             double f = (double)pos.getZ() + random.nextDouble();
             level.addParticle(ran > 0.8 ? ParticleTypes.CAMPFIRE_COSY_SMOKE : ParticleTypes.BUBBLE_POP, d, e + (random.nextFloat() / 10), f, 0.0D, 0.05D + (random.nextFloat() / 10), 0.0D);
             if (ran <= 0.8) {
-                level.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, ModSoundEvents.POP.get(), SoundSource.BLOCKS, random.nextFloat() * 0.25F + 0.25F, 0.1F + (random.nextFloat() / 2), false);
+                level.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, ModSoundEvents.SPRING_WATER_POP.get(), SoundSource.BLOCKS, random.nextFloat() * 0.25F - 0.25F, -2, false);
             }
         }
         if (!state.isSource() && !(Boolean)state.getValue(FALLING)) {

@@ -35,6 +35,16 @@
           "name": "minecraft:experience_bottle"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bedrock"
+        }
+      ]
     }
   ]
 }

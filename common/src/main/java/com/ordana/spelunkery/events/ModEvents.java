@@ -274,11 +274,16 @@ public class ModEvents {
                 player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
                 return InteractionResult.SUCCESS;
             }
+            var deplChance = 0;
 
             //give loot items and xp
             for (ItemStack stack : lootItem) {
                 if (stack.is(Items.EXPERIENCE_BOTTLE)) {
                     ExperienceOrb.award((ServerLevel) level, Vec3.atCenterOf(pos), 1);
+                    continue;
+                }
+                if (stack.is(Items.BEDROCK)) {
+                    deplChance += 1;
                     continue;
                 }
                 if (!player.getInventory().add(stack)) {
@@ -290,10 +295,12 @@ public class ModEvents {
             //depletion
             if (tablePath.getPath().contains("diamond")) {
                 var depl = CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get();
-                var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
-                if (chance > 0 && diamondGrindstone) {
-                    if (chance == 1 && !depleted)
-                        level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
+                for (int i = 0; i < deplChance; ++i) {
+                    var chance = depl == 0 ? 0 : level.random.nextInt(CommonConfigs.DIAMOND_GRINDSTONE_DEPLETE_CHANCE.get());
+                    if (chance > 0 && diamondGrindstone) {
+                        if (chance == 1 && !depleted)
+                            level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, state.getValue(ModBlockProperties.DEPLETION) + 1));
+                    }
                 }
             }
         }

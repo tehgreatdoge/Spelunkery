@@ -55,7 +55,7 @@
     { "block": "spelunkery:polished_rock_salt_slab", "state": { "illuminated": true } },
     { "block": "spelunkery:polished_rock_salt_stairs", "state": { "illuminated": true } },
     { "block": "spelunkery:polished_rock_salt_wall", "state": { "illuminated": true } },
-    { "block": "spelunkery:salt_lamp", "state": { "illuminated": true } },
+    { "block": "spelunkery:salt_lamp", "state": { "lit": true } },
     { "block": "spelunkery:rock_salt", "state": { "illuminated": true } },
 
     { "block": "spelunkery:carved_nephrite", "state": { "charge": "FULL" } },

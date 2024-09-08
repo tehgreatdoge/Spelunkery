@@ -78,12 +78,13 @@ public class GlowstickEntity extends ImprovedProjectileEntity {
     }
 
 
-    public void spawnTrailParticles(Vec3 currentPos, Vec3 newPos) {
+    public void spawnTrailParticles() {
         ParticleOptions particle = ParticleTypes.GLOW;
 
         for (int i = 0; i < 4; ++i) {
             this.level.addParticle(particle, this.getX(), this.getY() + 0.5, this.getZ(), 0.0D, 0.0D, 0.0D);
         }
+        super.spawnTrailParticles();
     }
 
     public static Block getGlowstickBlock(DyeColor color) {

@@ -69,6 +69,12 @@
       "spelunkery:item/pebble/knob"
     ]
   },
+  "spring_water_ambient": {
+    "subtitle": "subtitles.block.spring_water.ambient",
+    "sounds": [
+      "spelunkery:block/spring_water/ambient1"
+    ]
+  },
   "spring_water_pop": {
     "subtitle": "subtitles.block.spring_water.pop",
     "sounds": [
