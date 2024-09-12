@@ -217,20 +217,20 @@ public class ModEvents {
     private static InteractionResult disenchant(Item item, ItemStack stack, BlockPos pos, BlockState state,
                                                      Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
         var depleted = (state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) == 3) || state.is(Blocks.GRINDSTONE);
+        if (!player.isCrouching()) return InteractionResult.PASS;
+        if (!state.is(Blocks.GRINDSTONE) && !state.is(ModBlocks.DIAMOND_GRINDSTONE.get())) return InteractionResult.PASS;
 
         //handle enchants
-        if (player.isCrouching()) {
-            if (stack.isEnchanted()) {
-                if (level instanceof ServerLevel serverLevel) ExperienceOrb.award(serverLevel, Vec3.atCenterOf(pos), getExperienceFromItem(stack, depleted));
-                player.setItemInHand(hand, removeEnchants(stack, stack.getDamageValue(), depleted));
-                return InteractionResult.SUCCESS;
-            }
-            else if (stack.is(ModTags.GRINDSTONE_REPAIR_ITEM) && state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) > 0) {
-                if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
-                level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, 0));
-                if (!player.getAbilities().instabuild) stack.shrink(1);
-                return InteractionResult.SUCCESS;
-            }
+        if (stack.isEnchanted()) {
+            if (level instanceof ServerLevel serverLevel) ExperienceOrb.award(serverLevel, Vec3.atCenterOf(pos), getExperienceFromItem(stack, depleted));
+            player.setItemInHand(hand, removeEnchants(stack, stack.getDamageValue(), depleted));
+            return InteractionResult.SUCCESS;
+        }
+        else if (stack.is(ModTags.GRINDSTONE_REPAIR_ITEM) && state.is(ModBlocks.DIAMOND_GRINDSTONE.get()) && state.getValue(ModBlockProperties.DEPLETION) > 0) {
+            if (player instanceof ServerPlayer serverPlayer) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, stack);
+            level.setBlockAndUpdate(pos, state.setValue(ModBlockProperties.DEPLETION, 0));
+            if (!player.getAbilities().instabuild) stack.shrink(1);
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }

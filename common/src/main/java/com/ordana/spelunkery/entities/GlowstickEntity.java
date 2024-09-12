@@ -111,6 +111,10 @@ public class GlowstickEntity extends ImprovedProjectileEntity {
         this.remove(RemovalReason.DISCARDED);
     }
 
+    protected float getWaterInertia() {
+        return 0.95F;
+    }
+
     static {
         DATA_GLOWSTICK_COLOR = SynchedEntityData.defineId(GlowstickEntity.class, EntityDataSerializers.INT);
     }
