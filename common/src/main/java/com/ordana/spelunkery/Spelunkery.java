@@ -2,6 +2,7 @@ package com.ordana.spelunkery;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ordana.spelunkery.blocks.dispenser_interactions.ModDispenserBehaviors;
 import com.ordana.spelunkery.configs.ClientConfigs;
 import com.ordana.spelunkery.configs.CommonConfigs;
 import com.ordana.spelunkery.entities.DustBunnyEntity;
@@ -65,6 +66,7 @@ public class Spelunkery {
         ModParticles.init();
         ModSoundEvents.init();
         ModCreativeTabs.init();
+        ModDispenserBehaviors.init();
 
         MoonlightEventsHelper.addListener(Spelunkery::compassLogic, IDropItemOnDeathEvent.class);
 

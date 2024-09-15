@@ -1,6 +1,6 @@
 package com.ordana.spelunkery.items;
 
-import com.ordana.spelunkery.entities.EggplantEntity;
+import com.ordana.spelunkery.entities.ThrownEggplantEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -20,7 +20,7 @@ public class EggplantItem extends Item {
         ItemStack itemStack = player.getItemInHand(usedHand);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
-                EggplantEntity eggplantEntity = new EggplantEntity(level, player);
+                ThrownEggplantEntity eggplantEntity = new ThrownEggplantEntity(level, player);
                 eggplantEntity.setItem(itemStack);
                 eggplantEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
                 level.addFreshEntity(eggplantEntity);

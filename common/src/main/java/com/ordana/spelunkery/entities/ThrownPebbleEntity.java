@@ -20,16 +20,20 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class PebbleEntity extends ImprovedProjectileEntity {
+public class ThrownPebbleEntity extends ImprovedProjectileEntity {
 
 
-    public PebbleEntity(EntityType<? extends PebbleEntity> type, Level world) {
+    public ThrownPebbleEntity(EntityType<? extends ThrownPebbleEntity> type, Level world) {
         super(type, world);
     }
 
-    public PebbleEntity(Level level, LivingEntity thrower, ItemStack item) {
+    public ThrownPebbleEntity(Level level, LivingEntity thrower, ItemStack item) {
         super(ModEntities.PEBBLE.get(), thrower, level);
         this.setItem(item);
+    }
+
+    public ThrownPebbleEntity(Level worldIn, double x, double y, double z) {
+        super(ModEntities.PEBBLE.get(), x, y, z, worldIn);
     }
 
 

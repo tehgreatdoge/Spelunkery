@@ -29,16 +29,20 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.HashMap;
 
-public class GlowstickEntity extends ImprovedProjectileEntity {
+public class ThrownGlowstickEntity extends ImprovedProjectileEntity {
     private static final EntityDataAccessor<Integer> DATA_GLOWSTICK_COLOR;
 
 
-    public GlowstickEntity(EntityType<? extends GlowstickEntity> type, Level world) {
+    public ThrownGlowstickEntity(EntityType<? extends ThrownGlowstickEntity> type, Level world) {
         super(type, world);
     }
 
-    public GlowstickEntity(Level level, LivingEntity thrower) {
+    public ThrownGlowstickEntity(Level level, LivingEntity thrower) {
         super(ModEntities.GLOWSTICK.get(), thrower, level);
+    }
+
+    public ThrownGlowstickEntity(Level worldIn, double x, double y, double z) {
+        super(ModEntities.GLOWSTICK.get(), x, y, z, worldIn);
     }
 
     protected void defineSynchedData() {
@@ -116,7 +120,7 @@ public class GlowstickEntity extends ImprovedProjectileEntity {
     }
 
     static {
-        DATA_GLOWSTICK_COLOR = SynchedEntityData.defineId(GlowstickEntity.class, EntityDataSerializers.INT);
+        DATA_GLOWSTICK_COLOR = SynchedEntityData.defineId(ThrownGlowstickEntity.class, EntityDataSerializers.INT);
     }
 
     public static final HashMap<DyeColor, Block> DYE_COLOR_TO_BLOCK = new HashMap<>();

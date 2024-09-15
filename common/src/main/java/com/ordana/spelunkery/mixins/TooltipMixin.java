@@ -57,7 +57,7 @@ public class TooltipMixin {
             if (stack.is(Items.GRINDSTONE) || stack.is(ModBlocks.DIAMOND_GRINDSTONE.get().asItem())) {
                 if (InputConstants.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), Minecraft.getInstance().options.keyShift.key.getValue())) {
                     tooltip.add(TranslationUtils.GRINDSTONE_1.component());
-                    tooltip.add(TranslationUtils.GRINDSTONE_2.component());
+                    if (stack.is(ModBlocks.DIAMOND_GRINDSTONE.get().asItem())) tooltip.add(TranslationUtils.GRINDSTONE_2.component());
                 } else {
                     tooltip.add(TranslationUtils.CROUCH.component());
                 }

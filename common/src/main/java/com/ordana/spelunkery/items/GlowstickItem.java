@@ -4,7 +4,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 import com.ordana.spelunkery.configs.ClientConfigs;
-import com.ordana.spelunkery.entities.GlowstickEntity;
+import com.ordana.spelunkery.entities.ThrownGlowstickEntity;
 import com.ordana.spelunkery.reg.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -32,8 +32,8 @@ public class GlowstickItem extends BlockItem {
         this.color = color;
     }
 
-    public DyeColor getColor(GlowstickItem item) {
-        return item.color;
+    public DyeColor getColor() {
+        return this.color;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GlowstickItem extends BlockItem {
         ItemStack itemStack = player.getItemInHand(usedHand);
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
-            GlowstickEntity glowstick = new GlowstickEntity(level, player);
+            ThrownGlowstickEntity glowstick = new ThrownGlowstickEntity(level, player);
             glowstick.setItem(itemStack);
             glowstick.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
 

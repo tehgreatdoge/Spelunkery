@@ -47,24 +47,18 @@ public class ModEntities {
             () -> PlatHelper.newBlockEntityType(SluiceBlockEntity::new, ModBlocks.STONE_SLUICE.get()));
 
     //Thrown Entities
-    public static Supplier<EntityType<GlowstickEntity>> GLOWSTICK = RegHelper.registerEntityType(
+    public static Supplier<EntityType<ThrownGlowstickEntity>> GLOWSTICK = RegHelper.registerEntityType(
             Spelunkery.res("glowstick"),
-            GlowstickEntity::new, MobCategory.MISC, 0.28F, 0.98F, 10, 20);
-    public static Supplier<EntityType<MineomiteEntity>> MINEOMITE = RegHelper.registerEntityType(
+            ThrownGlowstickEntity::new, MobCategory.MISC, 0.28F, 0.98F, 10, 20);
+    public static Supplier<EntityType<ThrownMineomiteEntity>> MINEOMITE = RegHelper.registerEntityType(
             Spelunkery.res("mineomite"),
-            MineomiteEntity::new, MobCategory.MISC, 0.28F, 0.98F, 10, 20);
-    public static Supplier<EntityType<ThrownPrimedMineomiteEntity>> THROWN_PRIMED_MINEOMITE = RegHelper.registerEntityType(
-            Spelunkery.res("thrown_primed_mineomite"),
-            ThrownPrimedMineomiteEntity::new, MobCategory.MISC, 0.28F, 0.98F, 10, 20);
-    public static Supplier<EntityType<PrimedMineomiteEntity>> PRIMED_MINEOMITE = RegHelper.registerEntityType(
-            Spelunkery.res("primed_mineomite"),
-            PrimedMineomiteEntity::new, MobCategory.MISC, 0.98F, 0.98F, 10, 20);
-    public static Supplier<EntityType<PebbleEntity>> PEBBLE = RegHelper.registerEntityType(
+            ThrownMineomiteEntity::new, MobCategory.MISC, 0.28F, 0.98F, 10, 20);
+    public static Supplier<EntityType<ThrownPebbleEntity>> PEBBLE = RegHelper.registerEntityType(
             Spelunkery.res("pebble"),
-            PebbleEntity::new, MobCategory.MISC, 0.7F, 0.7F, 10, 20);
-    public static Supplier<EntityType<EggplantEntity>> EGGPLANT = RegHelper.registerEntityType(
+            ThrownPebbleEntity::new, MobCategory.MISC, 0.7F, 0.7F, 10, 20);
+    public static Supplier<EntityType<ThrownEggplantEntity>> EGGPLANT = RegHelper.registerEntityType(
             Spelunkery.res("eggplant"),
-            EggplantEntity::new, MobCategory.MISC, 0.7F, 0.7F, 10, 20);
+            ThrownEggplantEntity::new, MobCategory.MISC, 0.7F, 0.7F, 10, 20);
 
     //Other Entities
     public static Supplier<EntityType<FallingLayerEntity>> FALLING_LAYER = RegHelper.registerEntityType(

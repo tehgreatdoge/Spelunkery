@@ -70,8 +70,8 @@
   "tooltip.spelunkery.sculk_veins": "Mine Sculk with Shears to obtain",
   "tooltip.spelunkery.dust_bun_1": "Interact to break open",
   "tooltip.spelunkery.salt_1": "Impassable to the undead",
-  "tooltip.spelunkery.grindstone_1": "  Interact with rough gems to polish them",
-  "tooltip.spelunkery.grindstone_2": "  %1$s and use to polish entire stack",
+  "tooltip.spelunkery.grindstone_1": "  Interact while holding rough gems to polish them",
+  "tooltip.spelunkery.grindstone_2": "  The diamond coating wears off with time, restore using rough diamond shard",
   "tooltip.spelunkery.salt_bucket_1": "Currently holding %1$s piles worth of Salt",
   "tooltip.spelunkery.salt_bucket_2": "Boil a Water Bucket in a furnace to obtain",
   "tooltip.spelunkery.rope_ladder_1": "  Climbable, can be placed on the sides of blocks",
@@ -166,6 +166,7 @@
   "tag.spelunkery.glowsticks": "Glowsticks",
   "tag.spelunkery.grindable": "Grindables",
   "tag.spelunkery.nuggets": "Nuggets",
+  "tag.spelunkery.pebbles": "Pebbles",
   "tag.spelunkery.diamond_grindable": "Diamond Grindables",
   "tag.spelunkery.diamond_ores": "Diamond Ores",
   "tag.spelunkery.copper_ores": "Copper Ores",
@@ -188,6 +189,9 @@
   "tag.spelunkery.grindstone_repair_item": "Grindstone Repairers",
   "tag.spelunkery.parachute_repair": "Parachute Repairers",
   "tag.spelunkery.wip_items": "WIP items",
+
+  "tag.spelunkery.spring_water": "Spring Water",
+  "tag.spelunkery.portal_fluid": "Dimensional Tears",
 
   "material.spelunkery.nephrite": "Nephrite Material",
   "material.spelunkery.magnetite": "Magnetite Material",

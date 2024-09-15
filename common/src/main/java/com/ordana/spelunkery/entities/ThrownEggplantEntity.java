@@ -25,14 +25,18 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class EggplantEntity extends ImprovedProjectileEntity {
+public class ThrownEggplantEntity extends ImprovedProjectileEntity {
 
-    public EggplantEntity(EntityType<? extends EggplantEntity> type, Level world) {
+    public ThrownEggplantEntity(EntityType<? extends ThrownEggplantEntity> type, Level world) {
         super(type, world);
     }
 
-    public EggplantEntity(Level level, LivingEntity thrower) {
+    public ThrownEggplantEntity(Level level, LivingEntity thrower) {
         super(ModEntities.EGGPLANT.get(), thrower, level);
+    }
+
+    public ThrownEggplantEntity(Level worldIn, double x, double y, double z) {
+        super(ModEntities.EGGPLANT.get(), x, y, z, worldIn);
     }
 
 

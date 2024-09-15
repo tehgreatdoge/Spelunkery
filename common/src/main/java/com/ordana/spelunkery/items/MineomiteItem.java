@@ -1,8 +1,7 @@
 package com.ordana.spelunkery.items;
 
 import com.ordana.spelunkery.configs.ClientConfigs;
-import com.ordana.spelunkery.entities.MineomiteEntity;
-import com.ordana.spelunkery.entities.ThrownPrimedMineomiteEntity;
+import com.ordana.spelunkery.entities.ThrownMineomiteEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -44,13 +43,14 @@ public class MineomiteItem extends BlockItem {
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FLINTANDSTEEL_USE, SoundSource.NEUTRAL, 0.5F, 1F);
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TNT_PRIMED, SoundSource.NEUTRAL, 0.5F, 1F);
                 if (!player.isCreative()) offStack.hurtAndBreak(1, player, (l) -> l.broadcastBreakEvent(player.getUsedItemHand()));
-                ThrownPrimedMineomiteEntity mineomiteEntity = new ThrownPrimedMineomiteEntity(level, player);
+                ThrownMineomiteEntity mineomiteEntity = new ThrownMineomiteEntity(level, player);
                 mineomiteEntity.setItem(itemStack);
+                mineomiteEntity.setSecondsOnFire(100);
                 mineomiteEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
                 level.addFreshEntity(mineomiteEntity);
             }
             else {
-                MineomiteEntity mineomiteEntity = new MineomiteEntity(level, player);
+                ThrownMineomiteEntity mineomiteEntity = new ThrownMineomiteEntity(level, player);
                 mineomiteEntity.setItem(itemStack);
                 mineomiteEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
                 level.addFreshEntity(mineomiteEntity);

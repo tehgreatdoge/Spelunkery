@@ -2,7 +2,9 @@ package com.ordana.spelunkery.reg;
 
 import com.google.common.base.Stopwatch;
 import com.ordana.spelunkery.Spelunkery;
+import com.ordana.spelunkery.blocks.dispenser_interactions.ModDispenserBehaviors;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
+import net.minecraft.core.RegistryAccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +14,7 @@ public class ModSetup {
     private static int setupStage = 0;
 
     private static final List<Runnable> MOD_SETUP_WORK = List.of(
-            ModSetup::registerFabricFlammable,
-            ModSetup::registerDispenserBehvaiors
+            ModSetup::registerFabricFlammable
     );
 
     public static void setup() {
@@ -50,8 +51,5 @@ public class ModSetup {
         RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS_PLANT.get(), 100, 80);
         RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS.get(), 100, 80);
         RegHelper.registerBlockFlammability(ModBlocks.TANGLE_ROOTS_BLOCK.get(), 500, 80);
-    }
-
-    private static void registerDispenserBehvaiors() {
     }
 }

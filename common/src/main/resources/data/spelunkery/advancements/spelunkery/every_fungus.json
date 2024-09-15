@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:red_mushroom"
+      "item": "spelunkery:phosphor_fungus"
     },
     "title": {
       "translate": "advancements.spelunkery.every_fungus.title"
@@ -16,7 +16,7 @@
   },
   "parent": "spelunkery:spelunkery/conk_fungus",
   "criteria": {
-    "item": {
+    "red_mushroom": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -24,62 +24,146 @@
             "items": [
               "minecraft:red_mushroom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "brown_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "minecraft:brown_mushroom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "crimson_fungus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "minecraft:crimson_fungus"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "warped_fungus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "minecraft:warped_fungus"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "conk_fungus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:conk_fungus"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "milly_bubcap": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:milly_bubcap"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "inkcap_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:inkcap_mushroom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "white_inkcap_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:white_inkcap_mushroom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "phosphor_fungus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:phosphor_fungus"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "mushgloom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:mushgloom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "button_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:button_mushroom"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "crimini": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:crimini"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "portabella": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "spelunkery:portabella"
@@ -90,8 +174,18 @@
     }
   },
   "requirements": [
-    [
-      "item"
-    ]
+    [ "red_mushroom" ],
+    [ "brown_mushroom" ],
+    [ "crimson_fungus" ],
+    [ "warped_fungus" ],
+    [ "conk_fungus" ],
+    [ "milly_bubcap" ],
+    [ "inkcap_mushroom" ],
+    [ "white_inkcap_mushroom" ],
+    [ "phosphor_fungus" ],
+    [ "mushgloom" ],
+    [ "button_mushroom" ],
+    [ "crimini" ],
+    [ "portabella" ]
   ]
 }
