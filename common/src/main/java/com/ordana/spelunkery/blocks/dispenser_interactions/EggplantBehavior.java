@@ -1,7 +1,6 @@
 package com.ordana.spelunkery.blocks.dispenser_interactions;
 
 import com.ordana.spelunkery.entities.ThrownEggplantEntity;
-import com.ordana.spelunkery.entities.ThrownMineomiteEntity;
 import com.ordana.spelunkery.reg.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -9,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;

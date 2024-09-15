@@ -1,9 +1,9 @@
 package com.ordana.spelunkery.blocks.dispenser_interactions;
+
 import com.ordana.spelunkery.reg.ModTags;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.util.DispenserHelper;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.Items;
 
 public class ModDispenserBehaviors {
 

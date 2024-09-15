@@ -2,9 +2,7 @@ package com.ordana.spelunkery.reg;
 
 import com.google.common.base.Stopwatch;
 import com.ordana.spelunkery.Spelunkery;
-import com.ordana.spelunkery.blocks.dispenser_interactions.ModDispenserBehaviors;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.minecraft.core.RegistryAccess;
 
 import java.util.ArrayList;
 import java.util.List;
